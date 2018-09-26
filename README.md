@@ -3,7 +3,7 @@
 ## The Team
 
 ### Team Photo at Marketplace
-<img src="teamphoto.jpg" alt="test" width = "100%">
+<img src="images/teamphoto.jpg" alt="test" width = "100%">
 
 #### The Team Members: Sai Oduri, Ishan Tiwari, Eric Tan, Ricky Chen and Joe Liu.
 
