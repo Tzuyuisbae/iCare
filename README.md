@@ -22,7 +22,9 @@ My passions in life are developing code, writing articles, editing videos, teach
 
 ### Ishan Tiwari
 
-(Add Biographies Here)
+I am a third year student at University of Toronto, specializing in the comprehensive stream. I have a wide breadth of skills and abilities including expertise in the following: Python, Java, C, SQL, Version Control with SVN and Git, SDLC with an emphasis in Agile, and finally Software Design Principles and Patterns.
+
+Outside of my technical skills, I also have a bunch of hobbies and interests including, but not limited to: Basketball, Hockey, Football, Cricket, Table Tennis, listening to A LOT of music, and lastly watching and learning about TV and movies. All in all, I'm a big music junkie, a bigger movie buff, and a huge sports fanatic.
 
 ### Eric Tan
 
