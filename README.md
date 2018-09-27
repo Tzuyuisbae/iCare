@@ -30,8 +30,11 @@ My passions in life are developing code, writing articles, editing videos, teach
 
 ### Ricky Chen
 
-(Add Biographies Here)
+<img src="images/RickyChen.png" alt="Ricky" width = "10%">
 
+I am currently a third-year computer science student studying at the University of Toronto (Scarborough) campus in the software engineering stream with an expected graduation date of April 2020. I've dedicated my craft to computer science and with a passion, I strive to improve myself through every opportunity that strikes at me.
+
+Outside of school, my hobbies include attending Microsoft sanctioned events and tournaments for games, web development and staying indoors. Naps are not an option, but a necessity. I regularly consult my peers for inspiration and advice for extracurricular projects and random things in life. For me, the most important thing I have are my relationships with my friends and family and I strive to be the best I can be every day of my life.
 ### Joe Liu
 
 (Add Biographies Here)
