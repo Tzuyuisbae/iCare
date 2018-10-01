@@ -39,6 +39,9 @@ I am currently a third-year computer science student studying at the University 
 Outside of school, my hobbies include attending Microsoft sanctioned events and tournaments for games, web development and staying indoors. Naps are not an option, but a necessity. I regularly consult my peers for inspiration and advice for extracurricular projects and random things in life. For me, the most important thing I have are my relationships with my friends and family and I strive to be the best I can be every day of my life.
 ### Joe Liu
 
+<img src="images/JoeLiu.HEIC" alt="Joe" width = "10%">
+
 I am currently a second-year computer science student studying at the University of Toronto (Scarborough) campus in the entrepreneurship stream with an expected graduation date of April 2021. I am familiar with Java, Python, and a little bit of C.
+
 My hobbies outside of school are watching anime, listening to kpop, reading manga, and playing league of legends. I also attend as many hackathons as I can in order to meet new people and hopefully build something that will have a positive impact on society.
 
