@@ -1,5 +1,5 @@
 # Team9
 
-### Deliverable 1
-Located in folder D1
+### Deliverable 2
+Located in folder D2
 
