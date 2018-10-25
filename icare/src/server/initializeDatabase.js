@@ -31,7 +31,7 @@ create_table("client",
     " `Processing Details` VARCHAR(255)," + 
     " `Unique Identifier` VARCHAR(255)," + 
     " `Unique Identifier Value` INT," + 
-    " `Date of Birth (YYYY-MM-DD)` VARCHAR(255)," + 
+    " `Date of Birth (YYYY-MM-DD)` Date(255)," + 
     " `Phone Number` VARCHAR(255)," + 
     " `Does the Client Have an Email Address` VARCHAR(255)," + 
     " `Email Address` VARCHAR(255)," + 
