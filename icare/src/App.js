@@ -14,7 +14,9 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <InputBox>
+          <InputBox placeholder="username">
+          </InputBox>
+          <InputBox placeholder="password">
           </InputBox>
           <button className="button">Submit</button>
           <a

@@ -17,7 +17,7 @@ change = e => {
     return (
       <input 
         className="input" 
-        placeholder="username"
+        placeholder={this.props.placeholder}
         value = {this.state.value}
         onChange={e => this.change(e)}>
       </input>
