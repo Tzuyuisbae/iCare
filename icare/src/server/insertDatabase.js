@@ -21,25 +21,35 @@ function insert (table, row) {
           console.log("Database created");
         });
     });
+
 }
 
-function add_rows_to_table(table, sheet) {
+function add_sheet_to_table(table, sheet) {
 
     var rows = [];
-    // HEADERS START AT TWO and data at 3
+    var headers = sheet['data'][2];
+
+    // ROW data starts at row 3 of excel file
     for(var j = 3; j < sheet['data'].length; j++) {
         //add the row to the rows array
-        rows.push(sheet['data'][j]);
+        var row = sheet['data'][j];
+        if (!(row === undefined || row.length == 0)) {
+            console.log(row);
+            rows.push(row);
+        }
     }
-    var headers = sheet['data'][2];
+    // prepare row values for SQL processing
     rows = fix_row_types(headers, rows);
-    console.log(rows[0]);
-    insert(table, rows[0]);
+
+    // loop each row, try and catch each row for errors
+    for (var i = 0; i < rows.length; i++) {
+        insert(table, rows[i]);
+    }
 }
 
 function fix_row_types(header, rows) {
     
-    
+    // for each column
     for (var i =0; i<header.length; i++) {
         console.log(header[i]);
         if (header[i].includes("Date")) {
@@ -53,12 +63,11 @@ function fix_row_types(header, rows) {
             }
         }
     }
-    
+    // remove empty cells
     for (var i =0; i<rows.length; i++) {
         rows[i] = rows[i].slice(0, header.length);
     }
     return rows;
-
 }
 
 function process_template(filepath) {
@@ -71,14 +80,20 @@ function process_template(filepath) {
         console.log(sheet['name']);
 
         if (sheet['name'] == 'Client Profile') {
-            add_rows_to_table('client', sheet);
+            add_sheet_to_table('client', sheet);
         }
-/*
         if (sheet['name'] == 'Needs Assessment&Referrals') {
-            add_rows_to_table('`Needs Assessment`', sheet);
+            add_sheet_to_table('`needs assessment`', sheet);
         }
-        */
-       // etc..
+        if (sheet['name'] == 'Community Connections') {
+            add_sheet_to_table('community', sheet);
+        }
+        if (sheet['name'] == 'info&orient') {
+            add_sheet_to_table('infoorient', sheet);
+        }
+        if (sheet['name'] == 'Employment') {
+            add_sheet_to_table('employment', sheet);
+        }
     }
 }
 

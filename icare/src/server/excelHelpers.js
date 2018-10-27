@@ -46,10 +46,9 @@ function get_header_vals(rows) {
 }
 
 
-var rows = get_rows('/test.xlsx', 3);
+var rows = get_rows('/test.xlsx', 6);
 var header = get_header_vals(rows);
 
-var hello = "why there ";
 
 console.log(header);
 
