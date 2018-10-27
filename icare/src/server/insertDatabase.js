@@ -14,10 +14,14 @@ function insert (table, row) {
     });
 
     con.connect(function(err) {
-        if (err) throw err;
+        if (err){
+            console.log(err.message);
+        }
         console.log("Connected!");
         con.query(sql, function (err, result) {
-          if (err) throw err;
+        if (err){
+            console.log(err.message);
+        }
           console.log("Database created");
         });
     });
@@ -33,6 +37,7 @@ function add_sheet_to_table(table, sheet) {
     for(var j = 3; j < sheet['data'].length; j++) {
         //add the row to the rows array
         var row = sheet['data'][j];
+        // if row is not empty
         if (!(row === undefined || row.length == 0)) {
             console.log(row);
             rows.push(row);
@@ -43,7 +48,11 @@ function add_sheet_to_table(table, sheet) {
 
     // loop each row, try and catch each row for errors
     for (var i = 0; i < rows.length; i++) {
-        insert(table, rows[i]);
+        try {
+            insert(table, rows[i]);
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 }
 
@@ -88,7 +97,7 @@ function process_template(filepath) {
         if (sheet['name'] == 'Community Connections') {
             add_sheet_to_table('community', sheet);
         }
-        if (sheet['name'] == 'info&orient') {
+        if (sheet['name'] == 'Info&Orien') {
             add_sheet_to_table('infoorient', sheet);
         }
         if (sheet['name'] == 'Employment') {
