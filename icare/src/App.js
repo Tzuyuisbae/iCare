@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import inputBox from "./components/inputBox.js";
+import InputBox from "./components/inputBox.js";
 
 class App extends Component {
 
@@ -14,8 +14,8 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <inputBox>
-          </inputBox>
+          <InputBox>
+          </InputBox>
           <button className="button">Submit</button>
           <a
             className="App-link"
