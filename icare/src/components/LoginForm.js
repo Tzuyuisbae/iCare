@@ -10,6 +10,7 @@ export default class LoginForm extends React.Component {
     }
 
     change = e => {
+        this.props.onChange({[e.target.id]: e.target.value})
         this.setState({
             [e.target.id]: e.target.value
         });
@@ -17,8 +18,15 @@ export default class LoginForm extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        console.log(this.state);
-    }
+        this.setState({
+            username: '',
+            password: ''
+        });
+        this.props.onChange({
+            username: '',
+            password: ''
+        });
+    };
 
 
     render() {

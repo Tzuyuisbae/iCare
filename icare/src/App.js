@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import InputBox from "./components/inputBox.js";
+import LoginForm from "./components/LoginForm";
 
 class App extends Component {
+
+  state = {
+    fields: {},
+  };
+
+  onChange = updatedValue => { 
+    this.setState({ 
+      fields: {
+        ...this.state.fields,
+        ...updatedValue
+      } })
+  }
 
   render() {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <InputBox placeholder="username">
-          </InputBox>
-          <InputBox placeholder="password">
-          </InputBox>
-          <button className="button">Submit</button>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <LoginForm onChange={ fields => this.onChange(fields) }/>
+        <p>{JSON.stringify(this.state.fields, null, 2)}</p>
       </div>
     );
   }
