@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import InputBox from "./components/inputBox.js";
+import FileUpload from "./components/fileUpload.js";
 
 class App extends Component {
 
@@ -28,6 +29,10 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <div>
+           <h2> File upload </h2>
+           <FileUpload />
+        </div>
       </div>
     );
   }
