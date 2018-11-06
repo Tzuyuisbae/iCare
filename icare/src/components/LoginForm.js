@@ -9,7 +9,7 @@ export default class LoginForm extends React.Component {
         password: '',
     }
 
-    change = e => {
+    updateLoginForm = e => {
         this.props.onChange({[e.target.id]: e.target.value})
         this.setState({
             [e.target.id]: e.target.value
@@ -36,7 +36,7 @@ export default class LoginForm extends React.Component {
                     id='username'
                     placeholder='Username' 
                     value={this.state.username}
-                    onChange={e => this.change(e)}
+                    onChange={e => this.updateLoginForm(e)}
                 />
                 <br />
                 <input 
@@ -44,7 +44,7 @@ export default class LoginForm extends React.Component {
                     type='password'
                     placeholder='Password' 
                     value={this.state.password}
-                    onChange={e => this.change(e)}
+                    onChange={e => this.updateLoginForm(e)}
                 />
                 <br />
                 <button onClick={e => this.onSubmit(e)}>Submit </button>
