@@ -56,6 +56,7 @@ create_table("organization",
 create_table("accounts",
     " Name VARCHAR(255)," +
     " Email VARCHAR(255)," +
+    " Password VARCHAR(255)," +
     " id INT AUTO_INCREMENT PRIMARY KEY," +
     " organization_id INT,"+
     " permissions INT," +
@@ -400,5 +401,8 @@ create_table("employment",
 " `Time Spent With Client/Addressing Employment Needs: Minutes` INT," + 
 " `Reason for update` VARCHAR(60)," + 
 " PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
+
+
+
 
 // might add aa field to each table called month, who knows

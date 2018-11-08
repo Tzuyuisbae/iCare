@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var xlsx = require('node-xlsx');
 
 function insert (table, row) {
-	var sql = "INSERT INTO " + table + " values (" + row.join(", ") + ");";
+    var sql = "INSERT INTO " + table + " values (" + row.join(", ") + ");";
 
     console.log(sql);
 
