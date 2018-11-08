@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
-import LoginForm from "./components/LoginForm";
+import LoginPage from './pages/LoginPage';
+import UploadPage from './pages/UploadPage';
+import ErrorPage from './pages/ErrorPage';
+import Navbar from './components/Navbar';
 
 class App extends Component {
 
-  state = {
-    fields: {},
-  };
-
-  onChange = updatedValue => { 
-    this.setState({ 
-      fields: {
-        ...this.state.fields,
-        ...updatedValue
-      } })
-  }
 
   render() {
 
     return (
-      <div className="App">
-        <LoginForm onChange={ fields => this.onChange(fields) }/>
-        <p>{JSON.stringify(this.state.fields, null, 2)}</p>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={LoginPage} exact />
+          <Route path="/upload" component={UploadPage}/>
+          <Route component={ErrorPage}/>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/main.css';
+import Navbar from '../components/Navbar';
 
 export default class LoginPage extends React.Component {
 
