@@ -1,7 +1,8 @@
 var mysql = require('mysql');
 
 function authenticate(email, password, callback) {
-    var sql = "select Name from accounts where email='" + email + "'"; 
+    //var sql = "select Name from accounts where email='" + email + "'"; 
+    var sql = "select * from client";
 
     console.log(sql);
 
@@ -18,12 +19,13 @@ function authenticate(email, password, callback) {
           if (err) throw err;
           callback(null, result);
         });
+        con.end();
       });
 }
 
-var isValid = function (err, result) {
+var isValid = function (err, result, res) {
     if (err) console.log("Database error!");
-    console.log(result)
+    console.log(JSON.stringify(result));
 };
 
 // call from server.js and create and put callback function in server.js

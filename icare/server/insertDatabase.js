@@ -24,6 +24,7 @@ function insert (table, row) {
         }
           console.log("Database created");
         });
+        con.end();
     });
 
 }
