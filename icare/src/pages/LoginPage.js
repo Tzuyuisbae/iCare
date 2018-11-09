@@ -3,6 +3,7 @@ import '../css/main.css';
 import Navbar from '../components/Navbar';
 import {Link} from "react-router-dom";
 import { browserHistory } from 'react-router';
+import axios from 'axios';
 
 export default class LoginPage extends React.Component {
 
@@ -11,6 +12,7 @@ export default class LoginPage extends React.Component {
         username: '',
         password: '',
         cango: false,
+        data : {},
     }
 
     updateLoginPage = e => {
@@ -25,7 +27,13 @@ export default class LoginPage extends React.Component {
             username: '',
             password: ''
         });
-        this.props.history.push("/upload")
+
+        axios.post('http://localhost:8000/query', {header :{'Content-Type': 'application/json'}})
+        .then(res => {
+            this.setState({ data: res.data });
+            console.log(this.state.data);
+        })
+        // this.props.history.push("/upload")
     };
 
 

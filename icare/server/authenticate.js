@@ -1,26 +1,25 @@
 var mysql = require('mysql');
 
 function authenticate(email, password, callback) {
-    //var sql = "select Name from accounts where email='" + email + "'"; 
-    var sql = "select * from client";
-
-    console.log(sql);
-
-    var con = mysql.createConnection({
-        host: "den1.mysql6.gear.host",
-        user: "icare",
-        password: "team9!",
-        database: "icare"
-    });
-
-    con.connect(function(err) {
-        if (err) throw err;
-        con.query(sql, function (err, result) {
-          if (err) throw err;
-          callback(null, result);
+    //var sql = "select Name from accounts where email='" + email + "' and password='" + password + "'"; 
+    var sql = " select * from client";
+        console.log(sql);
+    
+        var con = mysql.createConnection({
+            host: "den1.mysql6.gear.host",
+            user: "icare",
+            password: "team9!",
+            database: "icare"
         });
-        con.end();
-      });
+    
+        con.connect(function(err) {
+            if (err) throw err;
+            con.query(sql, function (err, result) {
+              if (err) throw err;
+              callback(null, result);
+            });
+            con.end();
+          });
 }
 
 var isValid = function (err, result, res) {
@@ -31,4 +30,4 @@ var isValid = function (err, result, res) {
 // call from server.js and create and put callback function in server.js
 
 console.log("Call Function");
-authenticate('email.com', 'pass', isValid);
+authenticate('email@email.com', 'pass', isValid);
