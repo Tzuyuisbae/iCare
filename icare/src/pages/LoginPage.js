@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/main.css';
 import Navbar from '../components/Navbar';
 import {Link} from "react-router-dom";
+import { browserHistory } from 'react-router';
 
 export default class LoginPage extends React.Component {
 
@@ -9,6 +10,7 @@ export default class LoginPage extends React.Component {
     {
         username: '',
         password: '',
+        cango: false,
     }
 
     updateLoginPage = e => {
@@ -23,10 +25,12 @@ export default class LoginPage extends React.Component {
             username: '',
             password: ''
         });
+        this.props.history.push("/upload")
     };
 
 
     render() {
+        const place = !this.state.cango ? '/upload' : '/';
         return (
             <div className="form">
                 <form>
@@ -45,10 +49,10 @@ export default class LoginPage extends React.Component {
                         onChange={e => this.updateLoginPage(e)}
                     />
                     <br />
-                    <button onClick={e => this.onSubmit(e)}>Submit </button>
+                    <button onClick={e => this.onSubmit(e)}>Submit</button>
                 </form>
                 <div className={'nav-items'}>
-                    <Link to={'/upload'}>
+                    <Link to={place}>
                         <button>Go to upload</button>
                     </Link>
                 </div>
