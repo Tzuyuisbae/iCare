@@ -1,8 +1,7 @@
 var mysql = require('mysql');
 
 function authenticate(email, password, callback) {
-    //var sql = "select Name from accounts where email='" + email + "' and password='" + password + "'"; 
-    var sql = " select * from client";
+    var sql = "select Name from accounts where email='" + email + "' and password='" + password + "'"; 
         console.log(sql);
     
         var con = mysql.createConnection({

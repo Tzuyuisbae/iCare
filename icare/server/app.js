@@ -38,13 +38,14 @@ app.get('/query', (req, res) => {
 });
 
 app.post('/authenticate', (req, res) => {
-  queries.authenticate(function(err, result) {
+  console.log(req.data);
+  queries.authenticate(req.email, req.password, function(err, result) {
       if (!err) {
         //res.json([{ express: 'Hello From Express' } ]);
         if (result.length == 0) {
-          res.json({ authenticated: true });
-        } else {
           res.json({ authenticated: false });
+        } else {
+          res.json({ authenticated: true });
         }
       } else {
           console.log('Error while performing Query.');
