@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/main.css';
 import Navbar from '../components/Navbar';
+import {Link} from "react-router-dom";
 
 export default class LoginPage extends React.Component {
 
@@ -46,6 +47,11 @@ export default class LoginPage extends React.Component {
                     <br />
                     <button onClick={e => this.onSubmit(e)}>Submit </button>
                 </form>
+                <div className={'nav-items'}>
+                    <Link to={'/upload'}>
+                        <button>Go to upload</button>
+                    </Link>
+                </div>
                 <p>{JSON.stringify(this.state)}</p>
             </div>
         )
