@@ -34,6 +34,12 @@ export default class LoginPage extends React.Component {
         .then(res => {
             this.setState({ data: res.data });
             console.log(this.state.data);
+            if(this.state.data.authenticated){
+                this.props.history.push("/upload")
+            }
+            else{
+                console.log('failed');
+            }
         })
         // this.props.history.push("/upload")
     };
