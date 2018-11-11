@@ -20,12 +20,13 @@ function create_table(name, headers) {
           if (err) throw err;
           console.log("Database created");
         });
+        con.end();
     });
 
-    console.log("succeesssssssssssssssssssssssssssss")
 }
 
-
+module.exports.create_table = create_table;
+/*
 create_table("client", 
     " `Processing Details` VARCHAR(255)," + 
     " `Unique Identifier` VARCHAR(255)," + 
@@ -401,8 +402,5 @@ create_table("employment",
 " `Time Spent With Client/Addressing Employment Needs: Minutes` INT," + 
 " `Reason for update` VARCHAR(60)," + 
 " PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
-
-
-
-
+*/
 // might add aa field to each table called month, who knows

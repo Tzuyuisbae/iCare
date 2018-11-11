@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../css/main.css';
+import FileUpload from '../components/fileUpload.js';
+import Query from '../components/query.js';
 import {Link} from "react-router-dom";
 
 
@@ -12,6 +14,10 @@ export default class UploadPage extends React.Component {
                 <Link to={'/'}>
                     <button>Go to Login</button>
                 </Link>
+                <div>
+                    <FileUpload />
+                    <Query />
+                </div>
             </div>
         )
     }

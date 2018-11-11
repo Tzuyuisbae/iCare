@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
-import request from "superagent";
 import axios from 'axios';
 
 export default class FileUpload extends React.Component {
