@@ -1,0 +1,15 @@
+User Stories,Task,Dependency,Story Points,day 1,day 2,day 3,day 4,day 5,day 6,day 7
+"Note: plan has changed. In addition, the reason that there are unallocated to some individuals at some times is because some individuals were unavailable to work due to busy school schedules or other",,,,,,,,,,
+4,9,,3,Ricky:3,,,,,,
+4,10,,3,Sai:2,,,,,,Sai:1
+4,11,,3,Ishan:3,,,,,,
+4,12,,3,Eric:3,,,,,,
+5,13,,3,,,,Joe:3,,,
+5,14,,5,,,,,,Ishan:2,Ishan:3
+6,15,User Story 3,5,,Ishan: 2,Ishan: 3,,,,
+6,16,User Story 3,5,,,,,,,
+7,17,,2,,,,,,,
+7,18,,2,,,,,,,
+8,19,,2,,,,,,,
+8,20,,2,,,,,,,
+8,19,,2,,,,,,,
