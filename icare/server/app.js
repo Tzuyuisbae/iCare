@@ -1,4 +1,5 @@
 const queries = require('./queries.js');
+const insert = require('./insertDatabase.js');
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
@@ -23,7 +24,8 @@ app.post('/upload', function(req, res) {
   sampleFile.mv(`${__dirname}/public/${req.body.filename}`, function(err) {
     if (err)
       return res.status(500).send(err);
-
+    
+    insert.process_template(`${__dirname}/public/${req.body.filename}`)
     res.send('File uploaded!');
   });
 });

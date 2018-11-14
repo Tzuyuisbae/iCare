@@ -65,77 +65,77 @@ create_table("accounts",
 
 // TODO: shorten the column headers
 
-create_table("`Needs Assessment`",
+create_table("`needs assessment`",
 " `Processing Details` VARCHAR(255)," + 
 " `Update Record ID` INT," + 
 " `Unique Identifier` VARCHAR(255)," + 
 " `Unique Identifier Value` INT," + 
 " `Date of Birth (YYYY-MM-DD)` DATE," + 
 " `Postal Code where the service was received` VARCHAR(60)," + 
-" `Start Date of Assessment (YYYY-MM-DD)` DATE," + // PRIMARY KEY??
+" `Start Date of Assessment (YYYY-MM-DD)` DATE," + 
 " `Language of Service` VARCHAR(60)," + 
 " `Official Language of Preference` VARCHAR(60)," + 
 " `Type of Institution/Organization Where Client Received Services` VARCHAR(60)," + 
 " `Referred By` VARCHAR(60)," + 
-" `IKO: Life in Canada` VARCHAR(60)," + 
-" `IKO: Life in Canada Referrals` VARCHAR(60)," + 
-" `IKO: Community and Government Services` VARCHAR(60)," + 
-" `IKO: Community and Government Services Referrals` VARCHAR(60)," + 
-" `IKO: Working in Canada` VARCHAR(60)," + 
-" `IKO: Working in Canada Referrals` VARCHAR(60)," + 
-" `IKO: Education in Canada` VARCHAR(60)," + 
-" `IKO: Education in Canada Referrals` VARCHAR(60)," + 
-" `ITF: Social networks` VARCHAR(60)," + 
-" `ITF: Social networks Referrals` VARCHAR(60)," + 
-" `ITF: Professional networks` VARCHAR(60)," + 
-" `ITF: Professional networks Referrals` VARCHAR(60)," + 
-" `ITF: Access to local community services` VARCHAR(60)," + 
-" `ITF: Access to local community services Referrals` VARCHAR(60)," + 
-" `ITF: Level of community involvement` VARCHAR(60)," + 
-" `ITF: Level of community involvement Referrals` VARCHAR(60)," + 
-" `Improve Language Skills` VARCHAR(60)," + 
-" `Improve Language Skills Referrals` VARCHAR(60)," + 
+" `IKO: Life in Canada` ENUM(\"Yes\", \"No\", \"\")," + 
+" `IKO: Life in Canada Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `IKO: Community and Government Services` ENUM(\"Yes\", \"No\", \"\")," + 
+" `IKO: Community and Government Services Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `IKO: Working in Canada` ENUM(\"Yes\", \"No\", \"\")," + 
+" `IKO: Working in Canada Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `IKO: Education in Canada` ENUM(\"Yes\", \"No\", \"\")," + 
+" `IKO: Education in Canada Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `ITF: Social networks` ENUM(\"Yes\", \"No\", \"\")," + 
+" `ITF: Social networks Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `ITF: Professional networks` ENUM(\"Yes\", \"No\", \"\")," + 
+" `ITF: Professional networks Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `ITF: Access to local community services` ENUM(\"Yes\", \"No\", \"\")," + 
+" `ITF: Access to local community services Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `ITF: Level of community involvement` ENUM(\"Yes\", \"No\", \"\")," + 
+" `ITF: Level of community involvement Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Improve Language Skills` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Improve Language Skills Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Improve Language Skills to` VARCHAR(60)," + 
-" `Improve Other Skills` VARCHAR(60)," + 
-" `Improve Other Skills Referrals` VARCHAR(60)," + 
+" `Improve Other Skills` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Improve Other Skills Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Improve Other Skills to` VARCHAR(60)," + 
-" `Find employment` VARCHAR(60)," + 
-" `Find employment Referrals` VARCHAR(60)," + 
+" `Find employment` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Find employment Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Find employment: TimeFrame` VARCHAR(60)," + 
-" `Find employment: Minimum one year's work experience?` VARCHAR(60)," + 
-" `Find employment: which NOC skill level?` VARCHAR(60)," +            // NOC IS NATIONAL OCCUPATIONAL CLASSI
-" `Find employment: Intends to obtain license to work in Canada?` VARCHAR(60)," + 
-" `Client intends to become a Canadian citizen?` VARCHAR(60)," + 
-" `Support services may be required` VARCHAR(60)," + 
-" `Care for Newcomer Children` VARCHAR(60)," + 
-" `Transportation` VARCHAR(60)," + 
-" `Provisions for Disabilities` VARCHAR(60)," + 
-" `Translation` VARCHAR(60)," + 
-" `Interpretation` VARCHAR(60)," + 
-" `Crisis Counselling` VARCHAR(60)," + 
-" `Non-IRCC program services needed` VARCHAR(60)," + 
-" `Food/Clothing/Other Material Needs` VARCHAR(60)," + 
-" `Food/Clothing/Other Material Needs Referrals` VARCHAR(60)," + 
-" `Housing/Accommodation` VARCHAR(60)," + 
-" `Housing/Accommodation Referrals` VARCHAR(60)," + 
-" `Health/Mental Health/Well Being` VARCHAR(60)," + 
-" `Health/Mental Health/Well Being Referrals` VARCHAR(60)," + 
-" `Financial` VARCHAR(60)," + 
-" `Financial Referrals` VARCHAR(60)," + 
-" `Family Support` VARCHAR(60)," + 
-" `Family Support Referrals` VARCHAR(60)," + 
-" `Language (Non-IRCC)` VARCHAR(60)," + 
-" `Language (Non-IRCC) Referrals` VARCHAR(60)," + 
-" `Education/Skills Development` VARCHAR(60)," + 
-" `Education/Skills Development Referrals` VARCHAR(60)," + 
-" `Employment-related` VARCHAR(60)," + 
-" `Employment-related Referrals` VARCHAR(60)," + 
-" `Legal Information and Services` VARCHAR(60)," + 
-" `Legal Information and Services Referrals` VARCHAR(60)," + 
-" `Community Services` VARCHAR(60)," + 
-" `Community Services Referrals` VARCHAR(60)," + 
-" `Support Services Received` VARCHAR(60)," + 
-" `Care for Newcomer Children recieved?` VARCHAR(60)," + // REPEAT OF LINE 607
+" `Find employment: Minimum one year's work experience?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Find employment: which NOC skill level?` VARCHAR(60)," + 
+" `Find employment: Intends to obtain license to work in Canada?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Client intends to become a Canadian citizen?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Support services may be required` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Care for Newcomer Children Recieved?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Transportation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Provisions for Disabilities` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Interpretation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Crisis Counselling` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Non-IRCC program services needed` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Food/Clothing/Other Material Needs` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Food/Clothing/Other Material Needs Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Housing/Accommodation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Housing/Accommodation Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Health/Mental Health/Well Being` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Health/Mental Health/Well Being Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Financial` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Financial Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Family Support` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Family Support Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Language (Non-IRCC)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Language (Non-IRCC) Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Education/Skills Development` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Education/Skills Development Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Employment-related` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Employment-related Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Legal Information and Services` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Legal Information and Services Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Community Services` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Community Services Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Support Services Received` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Care for Newcomer Children` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Child 1: Age` VARCHAR(60)," + 
 " `Child 1: Type of Care` VARCHAR(60)," + 
 " `Child 2: Age` VARCHAR(60)," + 
@@ -146,22 +146,21 @@ create_table("`Needs Assessment`",
 " `Child 4: Type of Care` VARCHAR(60)," + 
 " `Child 5: Age` VARCHAR(60)," + 
 " `Child 5: Type of Care` VARCHAR(60)," + 
-" `Transportation Recieved?` VARCHAR(60)," +         // REPEAT OF LINE 608 ASK LATER
-" `Provisions for Disabilities Recieved?` VARCHAR(60)," +  // REPEAT OF LINE 609
-" `Translation?` VARCHAR(60)," + 
-" `Translation language Between` VARCHAR(60)," +  // DO THIS FOR BETWEEN and ands
+" `Transportation Recieved?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Provisions for Disabilities Recieved?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation language Between` VARCHAR(60)," + 
 " `Translation language And` VARCHAR(60)," + 
-" `Interpretation?` VARCHAR(60)," + 
+" `Interpretation?` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Interpretation language Between` VARCHAR(60)," + 
 " `Interpretation language And` VARCHAR(60)," + 
-" `Crisis Counselling Recieved?` VARCHAR(60)," +       // REPEAT OF LINE 112
-" `Settlement Plan completed and shared with client` VARCHAR(60)," + 
+" `Crisis Counselling Recieved?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Settlement Plan completed and shared with client` ENUM(\"Yes\", \"No\", \"\")," + 
 " `End Date of Assessment (YYYY-MM-DD)` DATE," + 
 " `Reason for update` VARCHAR(60)," +
-" PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
+"PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
 
-
-create_table ('community', // ADD ORGINAIZATION ID AS PRIMARY FORIEGN KEY
+create_table('community', 
 " `Processing Details` VARCHAR(255)," + 
 " `Update Record ID` INT," + 
 " `Unique Identifier` VARCHAR(255)," + 
@@ -176,38 +175,38 @@ create_table ('community', // ADD ORGINAIZATION ID AS PRIMARY FORIEGN KEY
 " `Type of Event Attended` VARCHAR(60)," + 
 " `Type of Service` VARCHAR(60)," + 
 " `Main Topic/Focus of the Service Received` VARCHAR(60)," + 
-" `Service Received` VARCHAR(100)," + 
+" `Service Received` VARCHAR(255)," + 
 " `Number of Unique Participants` VARCHAR(60)," + 
-" `Did Host Community Volunteers Participate in the Activity` VARCHAR(60)," + 
-" `Directed at a Specific Target Group` VARCHAR(60)," + 
-" `Target Group: Children (0-14 yrs)` VARCHAR(60)," + 
-" `Target Group: Youth (15-24 yrs)` VARCHAR(60)," + 
-" `Target Group: Senior` VARCHAR(60)," + 
-" `Target Group: Gender-specific` VARCHAR(60)," + 
-" `Target Group: Refugees` VARCHAR(60)," + 
-" `Target Group: Ethnic/cultural/linguistic group` VARCHAR(60)," + 
-" `Target Group: Deaf or Hard of Hearing` VARCHAR(60)," + 
-" `Target Group: Blind or Partially Sighted` VARCHAR(60)," + 
-" `Target Group: Lesbian, Gay, Bisexual, Transgender, Queer (LGBTQ)` VARCHAR(60)," + 
-" `Target Group: Families/Parents` VARCHAR(60)," + 
-" `Target Group: Other impairments (physical, mental)` VARCHAR(60)," + 
-" `Target Group: Clients with training in regulated profession` VARCHAR(60)," + 
-" `Target Group: Clients with training in a regulated trade` VARCHAR(60)," + 
-" `Target Group: Official language minorities` VARCHAR(60)," + 
+" `Did Host Community Volunteers Participate in the Activity` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Directed at a Specific Target Group` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Children (0-14 yrs)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Youth (15-24 yrs)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Senior` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Gender-specific` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Refugees` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Ethnic/cultural/linguistic group` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Deaf or Hard of Hearing` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Blind or Partially Sighted` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Lesbian, Gay, Bisexual, Transgender, Queer (LGBTQ)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Families/Parents` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Other impairments (physical, mental)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Clients with training in regulated profession` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Clients with training in a regulated trade` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Official language minorities` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Status of Service` VARCHAR(60)," + 
 " `Reason for Leaving Service` VARCHAR(60)," + 
-" `Start Date (YYYY-MM-DD)` DATE," + // PRIMARY KEY?!?! 
-" `End Date (YYYY-MM-DD)` DATE," +   // PRIMARY KEY?!!?
+" `Start Date (YYYY-MM-DD)` DATE," + 
+" `End Date (YYYY-MM-DD)` DATE," + 
 " `Projected End Date (YYYY-MM-DD)` DATE," + 
-" `Was Essential Skills and Aptitudes Training Received?` VARCHAR(60)," + 
-" `Computer Skills` VARCHAR(60)," + 
-" `Document Use` VARCHAR(60)," + 
-" `Interpersonal Skills and Workplace Culture` VARCHAR(60)," + 
-" `Leadership Training` VARCHAR(60)," + 
-" `Life Skills` VARCHAR(60)," + 
-" `Numeracy` VARCHAR(60)," + 
-" `Support Services Received` VARCHAR(60)," + 
-" `Care for Newcomer Children` VARCHAR(60)," + 
+" `Was Essential Skills and Aptitudes Training Received?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Computer Skills` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Document Use` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Interpersonal Skills and Workplace Culture` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Leadership Training` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Life Skills` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Numeracy` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Support Services Received` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Care for Newcomer Children` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Child 1: Age` VARCHAR(60)," + 
 " `Child 1: Type of Care` VARCHAR(60)," + 
 " `Child 2: Age` VARCHAR(60)," + 
@@ -218,95 +217,97 @@ create_table ('community', // ADD ORGINAIZATION ID AS PRIMARY FORIEGN KEY
 " `Child 4: Type of Care` VARCHAR(60)," + 
 " `Child 5: Age` VARCHAR(60)," + 
 " `Child 5: Type of Care` VARCHAR(60)," + 
-" `Transportation` VARCHAR(60)," + 
-" `Provisions for Disabilities` VARCHAR(60)," + 
-" `Translation?` VARCHAR(60)," + 
-" `Translation language Between` VARCHAR(60)," +  // DO THIS FOR BETWEEN and ands
+" `Transportation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Provisions for Disabilities` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation language Between` VARCHAR(60)," + 
 " `Translation language And` VARCHAR(60)," + 
-" `Interpretation?` VARCHAR(60)," + 
+" `Interpretation?` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Interpretation language Between` VARCHAR(60)," + 
 " `Interpretation language And` VARCHAR(60)," + 
-" `Crisis Counselling` VARCHAR(60)," + 
+" `Crisis Counselling` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Total Length of Service: Hours` INT," + 
 " `Total Length of Service: Minutes` INT," + 
 " `Reason for update` VARCHAR(60)," +
 " PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
 
-create_table("infoorient",
+
+
+create_table('infoorient', 
 " `Processing Details` VARCHAR(255)," + 
 " `Update Record ID` INT," + 
 " `Unique Identifier` VARCHAR(255)," + 
 " `Unique Identifier Value` INT," + 
 " `Date of Birth (YYYY-MM-DD)` DATE," + 
 " `Postal Code where the service was received` VARCHAR(60)," + 
-" `Start Date of Service (YYYY-MM-DD)` DATE," + //PRIMARY KEY?!
+" `Start Date of Service (YYYY-MM-DD)` DATE," + 
 " `Language of Service` VARCHAR(60)," + 
 " `Official Language of Preference` VARCHAR(60)," + 
-" `Type of Organization Where Client Received Services` VARCHAR(60)," + 
+" `Type of Institution Where Client Received Services` VARCHAR(60)," + 
 " `Referred By` VARCHAR(60)," + 
 " `Services Received` VARCHAR(60)," + 
 " `Total Length of Orientation` VARCHAR(60)," + 
 " `Total Length of Orientation: Hours` INT," + 
 " `Total Length of Orientation: Minutes` INT," + 
 " `Number of Clients in Group` VARCHAR(60)," + 
-" `Directed at a specific Target Group` VARCHAR(60)," + 
-" `Target Group: Children (0-14 yrs)` VARCHAR(60)," + 
-" `Target Group: Youth (15-24 yrs)` VARCHAR(60)," + 
-" `Target Group: Seniors` VARCHAR(60)," + 
-" `Target Group: Gender-specific` VARCHAR(60)," + 
-" `Target Group: Refugees` VARCHAR(60)," + 
-" `Target Group: Ethnic/cultural/linguistic group` VARCHAR(60)," + 
-" `Target Group: Deaf or Hard of Hearing` VARCHAR(60)," + 
-" `Target Group: Blind or Partially Sighted` VARCHAR(60)," + 
-" `Target Group: Lesbian, Gay, Bisexual, Transgender, Queer (LGBTQ)` VARCHAR(60)," + 
-" `Target Group: Families/Parents` VARCHAR(60)," + 
-" `Target Group: Clients with other impairments` VARCHAR(60)," + 
-" `Target Group: Clients with training in regulated profession` VARCHAR(60)," + 
-" `Target Group: Clients with training in regulated trade` VARCHAR(60)," + 
-" `Target Group: Official Language minorities` VARCHAR(60)," + 
-" `Overview of Canada` VARCHAR(60)," + 
-" `Overview of Canada Referrals` VARCHAR(60)," + 
-" `Sources of Information` VARCHAR(60)," + 
-" `Sources of Information Referrals` VARCHAR(60)," + 
-" `Rights and Freedoms` VARCHAR(60)," + 
-" `Rights and Freedoms Referrals` VARCHAR(60)," + 
-" `Canadian Law and Justice` VARCHAR(60)," + 
-" `Canadian Law and Justice Referrals` VARCHAR(60)," + 
-" `Important Documents` VARCHAR(60)," + 
-" `Important Documents Referrals` VARCHAR(60)," + 
-" `Improving English or French` VARCHAR(60)," + 
-" `Improving English or French Referrals` VARCHAR(60)," + 
-" `Employment and Income` VARCHAR(60)," + 
-" `Employment and Income Referrals` VARCHAR(60)," + 
-" `Education` VARCHAR(60)," + 
-" `Education Referrals` VARCHAR(60)," + 
-" `Housing` VARCHAR(60)," + 
-" `Housing Referrals` VARCHAR(60)," + 
-" `Health` VARCHAR(60)," + 
-" `Health Referrals` VARCHAR(60)," + 
-" `Money and Finances` VARCHAR(60)," + 
-" `Money and Finances Referrals` VARCHAR(60)," + 
-" `Transportation` VARCHAR(60)," +         // duplicate transportaition
-" `Transportation Referrals` VARCHAR(60)," + 
-" `Communications and Media` VARCHAR(60)," + 
-" `Communications and Media Referrals` VARCHAR(60)," + 
-" `Community Engagement` VARCHAR(60)," + 
-" `Community Engagement Referrals` VARCHAR(60)," + 
-" `Becoming a Canadian Citizen` VARCHAR(60)," + 
-" `Becoming a Canadian Citizen Referrals` VARCHAR(60)," + 
-" `Interpersonal Conflict` VARCHAR(60)," + 
-" `Interpersonal Conflict Referrals` VARCHAR(60)," + 
-" `Was Essential Skills and Aptitude Training Received?` VARCHAR(60)," + 
-" `Computer skills` VARCHAR(60)," + 
-" `Document Use` VARCHAR(60)," + 
-" `Interpersonal Skills and Workplace Culture` VARCHAR(60)," + 
-" `Leadership Training` VARCHAR(60)," + 
-" `Numeracy` VARCHAR(60)," + 
-" `Was Life Skills or Responsibilities of Citizen Info Received` VARCHAR(60)," + 
-" `Life Skills` VARCHAR(60)," + 
-" `Rights and Responsibilities of Citizenship (discover Canada)` VARCHAR(60)," + 
-" `Support Services Received` VARCHAR(60)," + 
-" `Care for Newcomer Children` VARCHAR(60)," + 
+" `Directed at a specific Target Group` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Children (0-14 yrs)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Youth (15-24 yrs)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Seniors` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Gender-specific` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Refugees` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Ethnic/cultural/linguistic group` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Deaf or Hard of Hearing` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Blind or Partially Sighted` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: (LGBTQ)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Families/Parents` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Clients with other impairments` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Clients with training in a regulated profession` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Clients with training in a regulated trade` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Target Group: Official Language minorities` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Overview of Canada` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Overview of Canada Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Sources of Information` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Sources of Information Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Rights and Freedoms` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Rights and Freedoms Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Canadian Law and Justice` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Canadian Law and Justice Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Important Documents` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Important Documents Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Improving English or French` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Improving English or French Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Employment and Income` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Employment and Income Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Education` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Education Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Housing` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Housing Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Health` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Health Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Money and Finances` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Money and Finances Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Transportation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Transportation Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Communications and Media` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Communications and Media Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Community Engagement` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Community Engagement Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Becoming a Canadian Citizen` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Becoming a Canadian Citizen Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Interpersonal Conflict` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Interpersonal Conflict Referrals` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Was Essential Skills Training Received as Part of this Service?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Computer skills` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Document Use` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Interpersonal Skills and Workplace Culture` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Leadership Training` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Numeracy` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Was Life Skills or Responsibilities of Citizen Info Received` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Life Skills` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Rights and Responsibilities of Citizenship (discover Canada)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Support Services Received` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Care for Newcomer Children` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Child 1: Age` VARCHAR(60)," + 
 " `Child 1: Type of Care` VARCHAR(60)," + 
 " `Child 2: Age` VARCHAR(60)," + 
@@ -317,18 +318,19 @@ create_table("infoorient",
 " `Child 4: Type of Care` VARCHAR(60)," + 
 " `Child 5: Age` VARCHAR(60)," + 
 " `Child 5: Type of Care` VARCHAR(60)," + 
-" `Transportation Received?` VARCHAR(60)," + 
-" `Provisions for Disabilities` VARCHAR(60)," + 
-" `Translation?` VARCHAR(60)," + 
-" `Translation language Between` VARCHAR(60)," +  // DO THIS FOR BETWEEN and ands
+" `Transportation Recieved?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Provisions for Disabilities` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation language Between` VARCHAR(60)," + 
 " `Translation language And` VARCHAR(60)," + 
-" `Interpretation?` VARCHAR(60)," + 
+" `Interpretation?` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Interpretation language Between` VARCHAR(60)," + 
 " `Interpretation language And` VARCHAR(60)," + 
-" `Crisis Counselling` VARCHAR(60)," + 
+" `Crisis Counselling` ENUM(\"Yes\", \"No\", \"\")," + 
 " `End Date of Service (YYYY-MM-DD)` DATE," + 
-" `Reason for update` VARCHAR(60)," + 
-" PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
+" `Reason for update` VARCHAR(60)," +
+"PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
+
 
 // add organization id
 create_table("employment", 
@@ -361,22 +363,22 @@ create_table("employment",
 " `Long Term Intervention: Client Met Mentor Regularly at` VARCHAR(60)," + 
 " `Long Term Intervention: Average Hours/Week with Mentor` INT," + 
 " `Long Term Intervention: Profession` VARCHAR(60)," + 
-" `Was Essential Skills and Aptitude Training Received?` VARCHAR(60)," + 
-" `Computer skills` VARCHAR(60)," + 
-" `Document Use` VARCHAR(60)," + 
-" `Interpersonal Skills and Workplace Culture` VARCHAR(60)," + 
-" `Leadership Training` VARCHAR(60)," + 
+" `Was Essential Skills and Aptitude Training Received?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Computer skills` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Document Use` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Interpersonal Skills and Workplace Culture` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Leadership Training` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Numeracy` VARCHAR(60)," + 
-" `Short Term Intervention1: Service Received` VARCHAR(60)," +  //NUMBER THESE
-" `Short Term Intervention1: Date (YYYY-MM-DD)` DATE," + 
-" `Short Term Intervention2: Service Received` VARCHAR(60)," + 
-" `Short Term Intervention2: Date (YYYY-MM-DD)` DATE," + 
-" `Short Term Intervention3: Service Received` VARCHAR(60)," + 
-" `Short Term Intervention3: Date (YYYY-MM-DD)` DATE," + 
-" `Short Term Intervention4: Service Received` VARCHAR(60)," + 
-" `Short Term Intervention4: Date (YYYY-MM-DD)` DATE," + 
-" `Short Term Intervention5: Service Received` VARCHAR(60)," + 
-" `Short Term Intervention5: Date (YYYY-MM-DD)` DATE," + 
+" `Short Term Intervention 1: Service Received` VARCHAR(60)," +  //NUMBER THESE
+" `Short Term Intervention 1: Date (YYYY-MM-DD)` DATE," + 
+" `Short Term Intervention 2: Service Received` VARCHAR(60)," + 
+" `Short Term Intervention 2: Date (YYYY-MM-DD)` DATE," + 
+" `Short Term Intervention 3: Service Received` VARCHAR(60)," + 
+" `Short Term Intervention 3: Date (YYYY-MM-DD)` DATE," + 
+" `Short Term Intervention 4: Service Received` VARCHAR(60)," + 
+" `Short Term Intervention 4: Date (YYYY-MM-DD)` DATE," + 
+" `Short Term Intervention 5: Service Received` VARCHAR(60)," + 
+" `Short Term Intervention 5: Date (YYYY-MM-DD)` DATE," + 
 " `Support Services Received` VARCHAR(60)," + 
 " `Care for Newcomer Children` VARCHAR(60)," + 
 " `Child 1: Age` VARCHAR(60)," + 
@@ -391,10 +393,10 @@ create_table("employment",
 " `Child 5: Type of Care` VARCHAR(60)," + 
 " `Transportation` VARCHAR(60)," + 
 " `Provisions for Disabilities` VARCHAR(60)," + 
-" `Translation?` VARCHAR(60)," + 
-" `Translation language Between` VARCHAR(60)," +  // DO THIS FOR BETWEEN and ands
+" `Translation?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation language Between` VARCHAR(60)," + 
 " `Translation language And` VARCHAR(60)," + 
-" `Interpretation?` VARCHAR(60)," + 
+" `Interpretation?` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Interpretation language Between` VARCHAR(60)," + 
 " `Interpretation language And` VARCHAR(60)," + 
 " `Crisis Counselling` VARCHAR(60)," + 
@@ -402,5 +404,206 @@ create_table("employment",
 " `Time Spent With Client/Addressing Employment Needs: Minutes` INT," + 
 " `Reason for update` VARCHAR(60)," + 
 " PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
-*/
+
 // might add aa field to each table called month, who knows
+
+
+create_table('`LT Client Enroll`', 
+" `Processing Details` VARCHAR(255)," + 
+" `Update record ID` INT," + 
+" `Unique Identifier Type` VARCHAR(60)," + 
+" `Unique Identifier Value` INT," + 
+" `Client Date of Birth (YYYY-MM-DD)` DATE," + 
+" `Postal Code where the service was received` VARCHAR(60)," + 
+" `Course Code` VARCHAR(60)," + 
+" `Date of Client's First Class (YYYY-MM-DD)` DATE," + 
+" `Official Language of Preference` VARCHAR(60)," + 
+" `Support services received` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Care for newcomer children` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Child 1: Age` VARCHAR(60)," + 
+" `Child 1: Type of Care` VARCHAR(60)," + 
+" `Child 2: Age` VARCHAR(60)," + 
+" `Child 2: Type of Care` VARCHAR(60)," + 
+" `Child 3: Age` VARCHAR(60)," + 
+" `Child 3: Type of Care` VARCHAR(60)," + 
+" `Child 4: Age` VARCHAR(60)," + 
+" `Child 4: Type of Care` VARCHAR(60)," + 
+" `Child 5: Age` VARCHAR(60)," + 
+" `Child 5: Type of Care` VARCHAR(60)," + 
+" `Transportation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Provisions for disabilities` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation?` VARCHAR(60)," + 
+" `Translation language Between` VARCHAR(60)," +  // DO THIS FOR BETWEEN and ands
+" `Translation language And` VARCHAR(60)," + 
+" `Interpretation?` VARCHAR(60)," + 
+" `Interpretation language Between` VARCHAR(60)," + 
+" `Interpretation language And` VARCHAR(60)," + 
+" `Crisis Counselling` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Reason for update` VARCHAR(60)," +
+"PRIMARY KEY(`Unique Identifier Type`, `Unique Identifier Value`, `Update record ID`)");
+
+
+// TODO: CHANGE THE READING SKILLS ENUM
+create_table('`LT Course Setup`',
+" `Processing Details` VARCHAR(255)," + 
+" `Update record ID` INT," + 
+" `Course Code` VARCHAR(60)," + 
+" `Notes` VARCHAR(60)," + 
+" `Course Held On An Ongoing Basis` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Official Language of Course` VARCHAR(60)," + 
+" `Format of Training Provided` VARCHAR(60)," + 
+" `Classes Held At` VARCHAR(60)," + 
+" `In-Person Instruction (%)` INT," + 
+" `Online/Distance Instruction (%)` INT," + 
+" `Total Number of Spots in Course` INT," + 
+" `Number of IRCC-Funded Spots in Course` INT," + 
+" `New Students Can Enrol in the Course` VARCHAR(60)," + 
+" `Support Services Available for Client in this Course` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Care for Newcomer Children` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Transportation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Provisions for Disabilities` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Course Start Date (YYYY-MM-DD)` DATE," + 
+" `Course End Date (YYYY-MM-DD)` DATE," + 
+" `Schedule: Morning` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Schedule: Afternoon` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Schedule: Evening` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Schedule: Weekend` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Schedule: Anytime` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Schedule: Online` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Instructional Hours Per Class` INT," + 
+" `Classes Per Week` INT," + 
+" `Weeks of Instruction` INT," + 
+" `Weeks of Instruction Per Year` INT," + 
+" `Dominant Focus of the Course` VARCHAR(60)," + 
+" `Course Directed at a Specific Target Group` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Children (0-14 yrs)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Youth (15-24 yrs)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Senior` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Gender-specific` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Refugees` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Official language minorities` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Ethnic/cultural/linguistic group` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Deaf or Hard of Hearing` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Blind or Partially Sighted` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Clients with other impairments (physical, mental)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Lesbian, Gay, Bisexual, Transgender, Queer (LGBTQ)` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Families/Parents` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Clients with international training in a regulated profession` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Clients with international training in a regulated trade` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Materials Used in Course` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Citizenship preparation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `PBLA language companion` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Contact Name` VARCHAR(60)," + 
+" `Street Number` INT," + 
+" `Street Name` VARCHAR(60)," + 
+" `Street Type` VARCHAR(60)," + 
+" `Street Direction` VARCHAR(60)," + 
+" `Unit/Suite` INT," + 
+" `Province` VARCHAR(60)," + 
+" `City` VARCHAR(60)," + 
+" `Postal Code (A#A#A#)` VARCHAR(60)," + 
+" `Telephone Number (###-###-####)` VARCHAR(60)," + 
+" `Telephone Extension` INT," + 
+" `Email Address` VARCHAR(60)," + 
+" `Listening Skill Level 1` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 2` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 3` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 4` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 5` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 6` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 7` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 8` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 9` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 10` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 11` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Listening Skill Level 12` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 1` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 2` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 3` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 4` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 5` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 6` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 7` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 8` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 9` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 10` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 11` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking Skill Level 12` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 1` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 2` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 3` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 4` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 5` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 6` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 7` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 8` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 9` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 10` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 11` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 12` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 13` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 14` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Reading Skill Level 15` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 16` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading Skill Level 17` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Writing Skill Level 1` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Writing Skill Level 2` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Writing Skill Level 3` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Writing Skill Level 4` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Writing Skill Level 5` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 6` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 7` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 8` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 9` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 10` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 11` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 12` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 13` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 14` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 15` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 16` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
+" `Writing Skill Level 17` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+"PRIMARY KEY(`Update record ID`)");
+
+
+create_table('`LT Client Exit`',
+" `Processing Details` VARCHAR(255)," + 
+" `Update record ID` INT," + 
+" `Unique Identifier Type` VARCHAR(255)," + 
+" `Unique Identifier Value` INT," + 
+" `Client Date of Birth (YYYY-MM-DD)` DATE," + 
+" `Course Code` VARCHAR(60)," + 
+" `Client's Training Status` VARCHAR(60)," + 
+" `Date Client Exited Course (YYYY-MM-DD)` DATE," + 
+" `Reason for Exiting course` VARCHAR(60)," + 
+" `Listening CLB Level` ENUM ('Insufficient Evidence', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking CLB Level` ENUM ('Insufficient Evidence', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Reading CLB Level` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Writing CLB Level` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Was a Certificate issued to the client?` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Listening level indicated on Certificate` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Speaking level indicated on Certificate` ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
+" `Support services received` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Care for newcomer children` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Child 1: Age` VARCHAR(60)," + 
+" `Child 1: Type of Care` VARCHAR(60)," + 
+" `Child 2: Age` VARCHAR(60)," + 
+" `Child 2: Type of Care` VARCHAR(60)," + 
+" `Child 3: Age` VARCHAR(60)," + 
+" `Child 3: Type of Care` VARCHAR(60)," + 
+" `Child 4: Age` VARCHAR(60)," + 
+" `Child 4: Type of Care` VARCHAR(60)," + 
+" `Child 5: Age` VARCHAR(60)," + 
+" `Child 5: Type of Care` VARCHAR(60)," + 
+" `Transportation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Provisions for disabilities` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation language Between` VARCHAR(60)," + 
+" `Translation language And` VARCHAR(60)," + 
+" `Interpretation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Between` VARCHAR(60)," + 
+" `And` VARCHAR(60)," + 
+" `Crisis Counselling` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Reason for update` VARCHAR(60),"+
+"PRIMARY KEY(`Unique Identifier Type`, `Unique Identifier Value`, `Update record ID`)");
+*/
