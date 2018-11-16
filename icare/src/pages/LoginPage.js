@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/main.css';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 export default class LoginPage extends React.Component {
 
@@ -30,7 +31,9 @@ export default class LoginPage extends React.Component {
         .then(res => {
             this.setState({ data: res.data });
             console.log(this.state.data);
+            const cookie = new Cookies();
             if(this.state.data.authenticated){
+                cookie.set('permissions', 1, {path: '/'})
                 this.props.history.push({
                     pathname : "/upload",
                     state : {

@@ -1,5 +1,7 @@
 import React from 'react';
 import '../css/main.css';
+import Navbar from '../components/Navbar';
+import Cookies from 'universal-cookie';
 
 
 
@@ -23,10 +25,12 @@ export default class QueryPage extends React.Component {
             sql : this.state.query,
         });
     }
-
+    
     render() {
+        const cookie = new Cookies();
         return (
             <div className="query">
+                <Navbar permissions={cookie.get('permissions')} />
                 <form>
                     <input 
                         id='query'

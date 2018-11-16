@@ -14,7 +14,7 @@ export default class Navbar extends React.Component {
     password = <li><NavLink to="/">Change password</NavLink></li>;
     signout = <li><NavLink to="/">Sign Out</NavLink></li>;
     
-    if (this.props.location.state.permissions == 1) {
+    if (this.props.permissions == 1) {
       return (
         <div className="navBar">
           {home}
