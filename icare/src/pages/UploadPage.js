@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../css/main.css';
 import FileUpload from '../components/fileUpload.js';
 import Query from '../components/query.js';
-import {Link} from "react-router-dom";
+import Navbar from '../components/Navbar';
 
 
 export default class UploadPage extends React.Component {
@@ -10,10 +10,8 @@ export default class UploadPage extends React.Component {
     render() {
         return (
             <div className="upload">
+                <Navbar location={this.props.location}/>
                 <h1>upload page is here haha yeet</h1>
-                <Link to={'/'}>
-                    <button>Go to Login</button>
-                </Link>
                 <div>
                     <FileUpload />
                     <Query />
