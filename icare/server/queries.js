@@ -21,7 +21,7 @@ module.exports = {
         });
     }, 
     authenticate: function(email, password, callback) {
-        var sql = "select Name from accounts where email='" + email + "' and password='" + password + "'"; 
+        var sql = "select Name, permissions from accounts where email='" + email + "' and password='" + password + "'"; 
     
         console.log(sql);
     
