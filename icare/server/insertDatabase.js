@@ -1,33 +1,35 @@
 var mysql = require('mysql');
 var xlsx = require('node-xlsx');
+var d = new Date();
+var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
-// function insert (table, row, callback) {
-//     var sql = "INSERT INTO " + table + " values (" + row.join(", ") + ");";
-//     //console.log(sql);
-    // var con = mysql.createConnection({
-    //     host: "den1.mysql6.gear.host",
-    //     user: "icare",
-    //     password: "team9!",
-    //     database: "icare"
-    // });
+function insert (table, row, callback) {
+    var sql = "INSERT INTO " + table + " values (" + row.join(", ") + ");";
+    //console.log(sql);
+    var con = mysql.createConnection({
+        host: "den1.mysql6.gear.host",
+        user: "icare",
+        password: "team9!",
+        database: "icare"
+    });
 
-//     con.connect((err) => {
-//         if (err) {
-//             throw err;
-//         }
-//         console.log("Connected!");
-//         con.query(sql, function (err, result) {
-//             if (err) {
-//                 callback(err);
-//             } else {
-//                 console.log('shit inserted');
-//             }
-//         });
-//         con.end();
-//     });
+    con.connect((err) => {
+        if (err) {
+            throw err;
+        }
+        console.log("Connected!");
+        con.query(sql, function (err, result) {
+            if (err) {
+                callback(err);
+            } else {
+                console.log('shit inserted');
+            }
+        });
+        con.end();
+    });
 
-//     return 'success';
-// }
+    return 'success';
+}
 
 function parse_sheet(sheet) {
     var rows = [];
@@ -78,11 +80,11 @@ function add_sheet_to_table(table, sheet) {
         //     if (i == rows.length) done();
         // });
 
-        var sql = "INSERT INTO " + table + " values (" + rows[i].join(", ") + ");";
+        var sql = "INSERT INTO " + table + " values ('APR', 2018, " + rows[i].join(", ") + ");";
 
         con.query(sql, function (err, result) {
             if (err) {
-                console.log(err.message);
+                console.log(err.message + ' ' + table);
             } else {
                 console.log(sql);
             }
@@ -152,4 +154,4 @@ module.exports.process_template = process_template;
 //module.exports.insert = insert;
 
 // console.log('Date of Birth (YYYY-MM-DD)'.includes("Date"));
-process_template (__dirname + '/test/test.xlsx');
+//process_template (__dirname + '/test/test.xlsx');
