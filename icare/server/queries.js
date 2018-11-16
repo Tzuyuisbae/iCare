@@ -174,7 +174,7 @@ module.exports = {
     }
 }
 
-module.exports.getMultipleNeedsReferralsCount([`ITF: Level of community involvement Referrals`, `ITF: Level of community involvement`], [`APR`, '2018']);
-module.exports.getReferralsDetails([`ITF: Level of community involvement Referrals`, `ITF: Level of community involvement`], [`APR`, '2018'], ['`Postal Code where the service was received`', ] );
-module.exports.getServicesRecieved('community',  ['`Postal Code where the service was received`'], [`APR`, '2018'],);
-module.exports.getServicedRecievedMonthlyComparison('infoorient', '2018');
+//module.exports.getMultipleNeedsReferralsCount([`ITF: Level of community involvement Referrals`, `ITF: Level of community involvement`], [`APR`, '2018']);
+module.exports.getReferralsDetails([`ITF: Level of community involvement Referrals`, `ITF: Level of community involvement`], [`APR`, '2018'], ['`Postal Code where the service was received`', '`Date of Birth (YYYY-MM-DD)`' ] );
+//module.exports.getServicesRecieved('community',  ['`Postal Code where the service was received`'], [`APR`, '2018'],);
+//module.exports.getServicedRecievedMonthlyComparison('infoorient', '2018');

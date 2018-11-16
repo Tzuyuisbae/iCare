@@ -154,4 +154,4 @@ module.exports.process_template = process_template;
 //module.exports.insert = insert;
 
 // console.log('Date of Birth (YYYY-MM-DD)'.includes("Date"));
-//process_template (__dirname + '/test/test.xlsx');
+process_template (__dirname + '/test/test.xlsx');

@@ -34,14 +34,13 @@ create_table("accounts",
     " Email VARCHAR(255)," +
     " Password VARCHAR(255)," +
     " id INT AUTO_INCREMENT PRIMARY KEY," +
-    " organization_id INT,"+
+    " organization INT,"+
     " permissions INT," +
-    " FOREIGN KEY (organization_id) references organization(organization_id)");
+    " FOREIGN KEY (organization) references organization(Name)");
 
 
 create_table("organization",
-    " Name VARCHAR(255)," +
-    " organization_id INT AUTO_INCREMENT PRIMARY KEY");
+    " Name VARCHAR(255) PRIMARY KEY
     */
 // TODO: shorten the column headers
 
