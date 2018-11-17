@@ -1,5 +1,6 @@
 const queries = require('./queries.js');
 const insert = require('./insertDatabase.js');
+const download = require('./downloadQuery.js');
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
@@ -30,7 +31,6 @@ app.post('/upload', function(req, res) {
   });
 });
 
-
 app.get('/query', (req, res) => {
   queries.clients(function(err, result) {
       if (!err) {
@@ -40,6 +40,15 @@ app.get('/query', (req, res) => {
           console.log('Error while performing Query.');
       }
   });
+});
+
+app.post('/download', (req, res) => {
+  console.log(req.body.query);
+  download.getCSV(req.body.query, function (filepath) {
+    res.download(filepath);
+  });
+  // var file = __dirname + '/public/kanye.jpg';
+  // res.download(file);
 });
 
 app.post('/authenticate', (req, res) => {

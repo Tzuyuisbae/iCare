@@ -8,27 +8,53 @@ export default class Query extends Component {
     constructor() {
         super();
         // data : []
-        this.state = { data : [] }//{"Processing Details":"[BUID:305939,RID:,ORP:4/5,DTS:2018-08-07 10:05:04][1] (Client) Unable to validate against database. / (Client) Impossible de valider dans la base de données.","Unique Identifier":"FOSS/GCMS Client ID","Unique Identifier Value":1234567,"Date of Birth (YYYY-MM-DD)":"1978-05-20T04:00:00.000Z","Phone Number":"902-628-1285","Does the Client Have an Email Address":"Yes","Email Address":"hnestor@cathcrosscultural.org","Street Number":1256,"Street Name":"College","Street Type":"Abbey","Street Direction":"E - East","Unit/Suite/Apt":205,"City":"Toronto","Province":"Ontario","Postal Code":"M6G3A4","Official Language of Preference":"English","Consent for Future Research/Consultation":"Yes"} };
+        this.state = { data : [], downloadable: false };
         this.onClick = this.onClick.bind(this);
+        this.onDownload = this.onDownload.bind(this);
     }
 
     onClick() {
         axios.get('http://localhost:8000/query')
         .then(res => {
-            this.setState({ data: res.data });
+            this.setState({ data: res.data, downloadable: true });
           })
     }
 
+    onDownload() {
+
+        // axios({
+        //     url: 'http://localhost:8000/download',
+        //     method: 'POST',
+        //     responseType: 'blob' // important
+        axios.post('http://localhost:8000/download',
+        {'query' : this.state.data},
+        {responseType: 'blob'}
+        ).then((response) => {
+             const url = window.URL.createObjectURL(new Blob([response.data]));
+             const link = document.createElement('a');
+             link.href = url;
+             link.setAttribute('download', 'test.csv'); //or any other extension
+             document.body.appendChild(link);
+             link.click();
+          });
+    }
+
     render() {
+        let downloadButton;
+        if (this.state.downloadable) {
+            downloadButton = <button onClick={this.onDownload}> DOWNLOAD</button>;
+        } else {
+            downloadButton = '';
+        }
+
         return (
             <div>
                 <button onClick={this.onClick}>QUERY </button>
+                <h2>{JSON.stringify(this.state.data[0])}</h2>
                 <JsonToTable json={this.state.data} /> 
+                {downloadButton}
             </div>
         
         );
       }
-
-
-
 }
