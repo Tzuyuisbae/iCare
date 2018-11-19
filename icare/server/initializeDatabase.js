@@ -27,7 +27,27 @@ function create_table(name, headers) {
 
 module.exports.create_table = create_table;
 /*
+// create user accounts
+
+create_table("accounts",
+    " Name VARCHAR(255)," +
+    " Email VARCHAR(255)," +
+    " Password VARCHAR(255)," +
+    " id INT AUTO_INCREMENT PRIMARY KEY," +
+    " organization_id INT,"+
+    " permissions INT," +
+    " FOREIGN KEY (organization_id) references organization(organization_id)");
+
+
+create_table("organization",
+    " Name VARCHAR(255)," +
+    " organization_id INT AUTO_INCREMENT PRIMARY KEY");
+    */
+// TODO: shorten the column headers
+
 create_table("client", 
+    " `MONTH` ENUM ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC')," +
+    " `YEAR` INT," +
     " `Processing Details` VARCHAR(255)," + 
     " `Unique Identifier` VARCHAR(255)," + 
     " `Unique Identifier Value` INT," + 
@@ -46,26 +66,10 @@ create_table("client",
     " `Official Language of Preference` VARCHAR(255)," + 
     " `Consent for Future Research/Consultation` VARCHAR(255)," +
     " PRIMARY KEY (`Unique Identifier`, `Unique Identifier Value`)");
-
-// create rest of the tables later
-create_table("organization",
-    " Name VARCHAR(255)," +
-    " organization_id INT AUTO_INCREMENT PRIMARY KEY");
-
-// create user accounts
-
-create_table("accounts",
-    " Name VARCHAR(255)," +
-    " Email VARCHAR(255)," +
-    " Password VARCHAR(255)," +
-    " id INT AUTO_INCREMENT PRIMARY KEY," +
-    " organization_id INT,"+
-    " permissions INT," +
-    " FOREIGN KEY (organization_id) references organization(organization_id)");
-
-// TODO: shorten the column headers
-
+/*
 create_table("`needs assessment`",
+" `MONTH` ENUM ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC')," +
+" `YEAR` INT," +
 " `Processing Details` VARCHAR(255)," + 
 " `Update Record ID` INT," + 
 " `Unique Identifier` VARCHAR(255)," + 
@@ -158,9 +162,11 @@ create_table("`needs assessment`",
 " `Settlement Plan completed and shared with client` ENUM(\"Yes\", \"No\", \"\")," + 
 " `End Date of Assessment (YYYY-MM-DD)` DATE," + 
 " `Reason for update` VARCHAR(60)," +
-"PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
+"PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`, `MONTH`, `YEAR`)");
 
 create_table('community', 
+" `MONTH` ENUM ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC')," +
+" `YEAR` INT," +
 " `Processing Details` VARCHAR(255)," + 
 " `Update Record ID` INT," + 
 " `Unique Identifier` VARCHAR(255)," + 
@@ -229,11 +235,13 @@ create_table('community',
 " `Total Length of Service: Hours` INT," + 
 " `Total Length of Service: Minutes` INT," + 
 " `Reason for update` VARCHAR(60)," +
-" PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
+" PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`, `MONTH`, `YEAR`)");
 
 
 
 create_table('infoorient', 
+" `MONTH` ENUM ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC')," +
+" `YEAR` INT," +
 " `Processing Details` VARCHAR(255)," + 
 " `Update Record ID` INT," + 
 " `Unique Identifier` VARCHAR(255)," + 
@@ -329,11 +337,13 @@ create_table('infoorient',
 " `Crisis Counselling` ENUM(\"Yes\", \"No\", \"\")," + 
 " `End Date of Service (YYYY-MM-DD)` DATE," + 
 " `Reason for update` VARCHAR(60)," +
-"PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
+"PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`, `MONTH`, `YEAR`)");
 
 
 // add organization id
 create_table("employment", 
+" `MONTH` ENUM ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC')," +
+" `YEAR` INT," +
 " `Processing Details` VARCHAR(255)," + 
 " `Update Record ID` INT," + 
 " `Unique Identifier` VARCHAR(255)," + 
@@ -403,17 +413,19 @@ create_table("employment",
 " `Time Spent With Client/Addressing Employment Needs: Hours` INT," + 
 " `Time Spent With Client/Addressing Employment Needs: Minutes` INT," + 
 " `Reason for update` VARCHAR(60)," + 
-" PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`)");
+" PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`, `MONTH`, `YEAR`)");
 
 // might add aa field to each table called month, who knows
 
 
 create_table('`LT Client Enroll`', 
+" `MONTH` ENUM ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC')," +
+" `YEAR` INT," +
 " `Processing Details` VARCHAR(255)," + 
 " `Update record ID` INT," + 
 " `Unique Identifier Type` VARCHAR(60)," + 
 " `Unique Identifier Value` INT," + 
-" `Client Date of Birth (YYYY-MM-DD)` DATE," + 
+" `Date of Birth (YYYY-MM-DD)` DATE," + 
 " `Postal Code where the service was received` VARCHAR(60)," + 
 " `Course Code` VARCHAR(60)," + 
 " `Date of Client's First Class (YYYY-MM-DD)` DATE," + 
@@ -440,11 +452,13 @@ create_table('`LT Client Enroll`',
 " `Interpretation language And` VARCHAR(60)," + 
 " `Crisis Counselling` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Reason for update` VARCHAR(60)," +
-"PRIMARY KEY(`Unique Identifier Type`, `Unique Identifier Value`, `Update record ID`)");
+"PRIMARY KEY(`Unique Identifier Type`, `Unique Identifier Value`, `Update record ID`, `MONTH`, `YEAR`)");
 
 
 // TODO: CHANGE THE READING SKILLS ENUM
 create_table('`LT Course Setup`',
+" `MONTH` ENUM ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC')," +
+" `YEAR` INT," +
 " `Processing Details` VARCHAR(255)," + 
 " `Update record ID` INT," + 
 " `Course Code` VARCHAR(60)," + 
@@ -563,15 +577,17 @@ create_table('`LT Course Setup`',
 " `Writing Skill Level 15` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
 " `Writing Skill Level 16` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," +  
 " `Writing Skill Level 17` ENUM ('Lit - Foundation L', 'Lit - 1L', 'Lit - 2L', 'Lit - 3L', 'Lit - 4L', 'Pre-CLB', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'N/A')," + 
-"PRIMARY KEY(`Update record ID`)");
+"PRIMARY KEY(`Update record ID`, `MONTH`, `YEAR`)");
 
 
 create_table('`LT Client Exit`',
+" `MONTH` ENUM ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC')," +
+" `YEAR` INT," +
 " `Processing Details` VARCHAR(255)," + 
 " `Update record ID` INT," + 
 " `Unique Identifier Type` VARCHAR(255)," + 
 " `Unique Identifier Value` INT," + 
-" `Client Date of Birth (YYYY-MM-DD)` DATE," + 
+" `Date of Birth (YYYY-MM-DD)` DATE," + 
 " `Course Code` VARCHAR(60)," + 
 " `Client's Training Status` VARCHAR(60)," + 
 " `Date Client Exited Course (YYYY-MM-DD)` DATE," + 
@@ -605,5 +621,5 @@ create_table('`LT Client Exit`',
 " `And` VARCHAR(60)," + 
 " `Crisis Counselling` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Reason for update` VARCHAR(60),"+
-"PRIMARY KEY(`Unique Identifier Type`, `Unique Identifier Value`, `Update record ID`)");
+"PRIMARY KEY(`Unique Identifier Type`, `Unique Identifier Value`, `Update record ID`, `MONTH`, `YEAR`)");
 */
