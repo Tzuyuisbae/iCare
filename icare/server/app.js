@@ -56,4 +56,17 @@ app.post('/authenticate', (req, res) => {
   });
 });
 
+app.post('/customquery', (req, res) => {
+  console.log(req.body.sql);
+  queries.query(req.body.sql, function(err, result) {
+    if (!err) {
+      if (result.length > 0) {
+        res.send(result);
+      } else {
+        console.log('Error while performing query');
+      }
+    }
+  });
+});
+
 app.listen(8000);

@@ -2,14 +2,15 @@ import React from 'react';
 import '../css/main.css';
 import Navbar from '../components/Navbar';
 import Cookies from 'universal-cookie';
-
+import axios from 'axios';
+import { JsonToTable } from "react-json-to-table";
 
 
 export default class QueryPage extends React.Component {
 
     state = {
-        sql : '',
-        query: '',
+        sql: '',
+        data: {},
     }
 
     updateQueryPage = (e) => {
@@ -20,22 +21,27 @@ export default class QueryPage extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        this.setState({
-            query : '',
-            sql : this.state.query,
+        axios.post('http://localhost:8000/customquery', 
+            {sql: this.state.sql}
+        ).then((res) => {
+            console.log(this.state.sql);
+            this.setState({data: res.data});
         });
+
+        this.setState({sql : ''});
     }
-    
+
     render() {
         const cookie = new Cookies();
         return (
             <div className="query">
                 <Navbar permissions={cookie.get('permissions')} />
+                <div className="error">{this.state.error}</div>
                 <form>
                     <input 
-                        id='query'
+                        id='sql'
                         placeholder='Insert SQL query here' 
-                        value={this.state.query}
+                        value={this.state.sql}
                         onChange={e => this.updateQueryPage(e)}
                     />
                     <br />
@@ -43,6 +49,7 @@ export default class QueryPage extends React.Component {
                 </form>
 
                 <p>{JSON.stringify(this.state)}</p>
+                <JsonToTable json={this.state.data} />
             </div>
         )
     }
