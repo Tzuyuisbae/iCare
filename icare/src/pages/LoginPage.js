@@ -20,20 +20,20 @@ export default class LoginPage extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        this.setState({
-            email: '',
-            password: ''
-        });
+        const cookie = new Cookies();
+        cookie.set('email', this.state.email, {path: '/'});
 
         axios.post('http://localhost:8000/authenticate', 
         {'email':this.state.email, 'password':this.state.password},
         {headers :{'Content-Type': 'application/json'}})
         .then(res => {
-            this.setState({ data: res.data });
-            console.log(this.state.data);
-            const cookie = new Cookies();
+            this.setState({ 
+                ...this.state, 
+                data: res.data 
+            });
+            
             if(this.state.data.authenticated){
-                cookie.set('permissions', 1, {path: '/'})
+                cookie.set('permissions', 1, {path: '/'});
                 this.props.history.push({
                     pathname : "/upload",
                     state : {
@@ -46,7 +46,11 @@ export default class LoginPage extends React.Component {
                 console.log('failed');
             }
         })
-        // this.props.history.push("/upload")
+
+        this.setState({
+            email: '',
+            password: ''
+        });
     };
 
 
