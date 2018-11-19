@@ -19,7 +19,6 @@ module.exports = {
         con.connect(function(err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-            if (err) throw err;
             callback(null, result);
             });
             con.end();
