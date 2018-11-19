@@ -33,8 +33,7 @@ create_table("accounts",
     " Name VARCHAR(255)," +
     " Email VARCHAR(255)," +
     " Password VARCHAR(255)," +
-    " id INT AUTO_INCREMENT PRIMARY KEY," +
-    " organization INT,"+
+    " organization VARCHAR(255),"+
     " permissions INT," +
     " FOREIGN KEY (organization) references organization(Name)");
 

@@ -13,7 +13,7 @@ function getCSVString(data, callback) {
 
 function getCSV(data, callback) {
     var csv = getCSVString(data);
-    var filepath = __dirname + '/public/' + 'test.csv';
+    var filepath = __dirname + '/download/' + 'test.csv';
     fs.writeFile(filepath, csv, function(err) {
         if(err) {
             return console.log(err);
