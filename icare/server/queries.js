@@ -172,6 +172,27 @@ module.exports = {
             });
             con.end();
         });
+    },
+
+    /**
+     * Manual SQL query from user 
+     * @param {String} sql the sql string 
+     */
+    query: function(sql, callback) {
+        var con = mysql.createConnection({
+            host: "den1.mysql6.gear.host",
+            user: "icare",
+            password: "team9!",
+            database: "icare"
+        });
+
+        con.connect(function(err) {
+            if (err) throw err;
+            con.query(sql, function (err, result) {
+                callback(err, result);
+            })
+            con.end();
+        });
     }
 }
 

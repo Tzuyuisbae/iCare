@@ -53,15 +53,27 @@ app.post('/download', (req, res) => {
 app.post('/authenticate', (req, res) => {
   queries.authenticate(req.body.email, req.body.password, function(err, result) {
       if (!err) {
-        //res.json([{ express: 'Hello From Express' } ]);
         if (result.length == 0) {
           res.json({ authenticated: false });
         } else {
-          res.json({ authenticated: true });
+          res.json({ authenticated: true, permissions: result[0].permissions });
         }
       } else {
           console.log('Error while performing Query.');
       }
+  });
+});
+
+app.post('/customquery', (req, res) => {
+  console.log(req.body.sql);
+  queries.query(req.body.sql, function(err, result) {
+    if (!err) {
+      if (result.length > 0) {
+        res.send(result);
+      } else {
+        console.log('Error while performing query');
+      }
+    }
   });
 });
 
