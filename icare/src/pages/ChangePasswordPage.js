@@ -3,7 +3,8 @@ import '../css/main.css';
 import FileUpload from '../components/fileUpload.js';
 import Query from '../components/query.js';
 import {Link} from "react-router-dom";
-
+import Cookies from 'universal-cookie';
+import cookie from '../pages/LoginPage';
 
 export default class ChangePasswordPage extends React.Component {
 
@@ -31,7 +32,7 @@ export default class ChangePasswordPage extends React.Component {
         });
 
         axios.post('http://localhost:8000/authenticate', 
-        {'email':this.props.username, 'password':this.state.oldPassword},
+        {'email':cookie.email, 'password':this.state.oldPassword},
         {headers :{'Content-Type': 'application/json'}})
         .then(res => {
             this.setState({ data: res.data });
