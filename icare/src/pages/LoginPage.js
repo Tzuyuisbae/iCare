@@ -1,79 +1,43 @@
 import React, { Component } from 'react';
+import '../css/login.css';
 import '../css/main.css';
 import Navbar from '../components/Navbar';
 import {Link} from "react-router-dom";
+import LoginForm from "../components/LoginForm"
 import { browserHistory } from 'react-router';
 import axios from 'axios';
+import Page from '../Page.js';
+import iCareLogo from "../images/iCare.png"
 
 export default class LoginPage extends React.Component {
 
-    state = 
-    {
-        username: '',
-        password: '',
-        cango: false,
-        data : {},
-    }
-
-    updateLoginPage = e => {
-        this.setState({
-            [e.target.id]: e.target.value
-        });
+    state = {
+        cango: false
     };
-
-    onSubmit = e => {
-        e.preventDefault();
-        this.setState({
-            username: '',
-            password: ''
-        });
-
-        axios.post('http://localhost:8000/authenticate', 
-        {'email':this.state.username, 'password':this.state.password},
-        {headers :{'Content-Type': 'application/json'}})
-        .then(res => {
-            this.setState({ data: res.data });
-            console.log(this.state.data);
-            if(this.state.data.authenticated){
-                this.props.history.push("/upload")
-            }
-            else{
-                console.log('failed');
-            }
-        })
-        // this.props.history.push("/upload")
-    };
-
 
     render() {
         const place = !this.state.cango ? '/upload' : '/';
         return (
-            <div className="form">
-                <form>
-                    <input 
-                        id='username'
-                        placeholder='Username' 
-                        value={this.state.username}
-                        onChange={e => this.updateLoginPage(e)}
-                    />
-                    <br />
-                    <input 
-                        id='password'
-                        type='password'
-                        placeholder='Password' 
-                        value={this.state.password}
-                        onChange={e => this.updateLoginPage(e)}
-                    />
-                    <br />
-                    <button onClick={e => this.onSubmit(e)}>Submit</button>
-                </form>
-                <div className={'nav-items'}>
-                    <Link to={place}>
-                        <button>Go to upload</button>
-                    </Link>
+            <Page id="login" className="halfblue">
+            <div style={{marginTop: '65px'}}/>
+            <div className = "row">
+              <div className="col left">
+                <img src={iCareLogo} className="iCare"/>
+                <span className="info infoText">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et vulputate nulla. Suspendisse ultrices non nulla at accumsan. Aliquam scelerisque efficitur tellus eu porttitor. Ut fermentum porttitor lectus, sed rhoncus ipsum tincidunt eget. Morbi blandit consequat odio sed commodo. In ut erat pharetra, tempor purus vitae, laoreet massa. Integer aliquam a nisi quis vulputate. Morbi condimentum nibh sed nibh fermentum sodales. Donec vestibulum egestas.
+                </span>
+              </div>
+              <div className="form right">
+                    <p className="signupText">Sign In</p>
+                    <LoginForm />
+                    <div className={'nav-items'}>
+                        <Link to={place}>
+                            <button>Go to upload</button>
+                        </Link>
+                    </div>
                 </div>
-                <p>{JSON.stringify(this.state)}</p>
             </div>
+          </Page>
         )
     }
 
