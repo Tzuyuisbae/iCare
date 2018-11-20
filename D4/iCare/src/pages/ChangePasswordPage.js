@@ -39,7 +39,7 @@ export default class ChangePasswordPage extends React.Component {
             if(this.state.data.authenticated){
                 this.props.history.push("/ChangePasswordForm")
                 
-                // change the password in the database
+                // change the password in the database (back end func?)
 
 
             }
