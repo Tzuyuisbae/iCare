@@ -12,26 +12,27 @@ export default class Query extends Component {
         super();
         // data : []
         this.state = { queries : {}, data: [], menuOptions: []};
-        this.onSelect = this.onSelect.bind(this);
+        this._onSelect = this._onSelect.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
     }
 
     componentDidMount() {
         const cookie = new Cookies();
 
-        axios.post('http://localhost:8000/getSavedPresetQueries', 
-            {email:cookie.get('email')},
-            {headers :{'Content-Type': 'application/json'}})
+        axios.get('http://localhost:8000/getSavedPresetQueries', 
+            {params: {email:cookie.get('email')}})
         .then (res => {
             this.setState({queries : res.data});
             this.setState({menuOptions : Object.keys(res.data)});
         });
     }
 
-    onSelect(option) {
-        axios.post('http://localhost:8000/customquery', 
-            {sql: this.state.queries[option]}
-        ).then((res) => {
+    _onSelect (option) {
+
+        axios.get('http://localhost:8000/query', 
+            {params: {sql: this.state.queries[option.label] }})
+        .then(res => {
+            console.log(this.state.sql);
             this.setState({data: res.data});
         });
     }
@@ -39,7 +40,7 @@ export default class Query extends Component {
     render() {
         return (
             <div>
-                <Dropdown options={this.state.menuOptions} onChange={this.onSelect} placeholder="Select an option" />
+                <Dropdown options={this.state.menuOptions} onChange={this._onSelect} placeholder="Select an option" />
                 <h2>{JSON.stringify(this.state.data[0])}</h2>
                 <JsonToTable json={this.state.data} /> 
                 <Download data={this.state.data} />

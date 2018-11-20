@@ -32,8 +32,8 @@ app.post('/upload', function(req, res) {
 });
 
 app.get('/query', (req, res) => {
-  console.log(req.body.sql);
-  queries.query(req.body.sql, function(err, result) {
+  console.log(req.query.sql);
+  queries.query(req.query.sql, function(err, result) {
     if (!err) {
       if (result.length > 0) {
         res.send(result);
@@ -80,12 +80,10 @@ app.post('/customquery', (req, res) => {
   });
 });
 
-app.post('/getSavedPresetQueries', (req, res) => {
-  const email = req.body.email;
-  console.log('hello');
+app.get('/getSavedPresetQueries', (req, res) => {
+  const email = req.query.email;
   savedQueries.getSavedQueries(email, function (err, result) {
     if (!err) {
-      console.log(result);
       res.send(result);
     } else {
       console.log(err.message);
