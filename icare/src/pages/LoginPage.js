@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../css/main.css';
-import Navbar from '../components/Navbar';
-import {Link} from "react-router-dom";
-import { browserHistory } from 'react-router';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 export default class LoginPage extends React.Component {
 
     state = 
     {
-        username: '',
+        email: '',
         password: '',
-        cango: false,
         data : {},
     }
 
@@ -23,37 +20,48 @@ export default class LoginPage extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        this.setState({
-            username: '',
-            password: ''
-        });
+        const cookie = new Cookies();
+        cookie.set('email', this.state.email, {path: '/'});
 
         axios.post('http://localhost:8000/authenticate', 
-        {'email':this.state.username, 'password':this.state.password},
+        {'email':this.state.email, 'password':this.state.password},
         {headers :{'Content-Type': 'application/json'}})
         .then(res => {
-            this.setState({ data: res.data });
-            console.log(this.state.data);
+            this.setState({ 
+                ...this.state, 
+                data: res.data 
+            });
+            
             if(this.state.data.authenticated){
-                this.props.history.push("/upload")
+                cookie.set('permissions', 1, {path: '/'});
+                this.props.history.push({
+                    pathname : "/upload",
+                    state : {
+                        permissions: res.data.permissions,
+                        email: this.state.email,
+                    }
+                });
             }
             else{
                 console.log('failed');
             }
         })
-        // this.props.history.push("/upload")
+
+        this.setState({
+            email: '',
+            password: ''
+        });
     };
 
 
     render() {
-        const place = !this.state.cango ? '/upload' : '/';
         return (
             <div className="form">
                 <form>
                     <input 
-                        id='username'
-                        placeholder='Username' 
-                        value={this.state.username}
+                        id='email'
+                        placeholder='Email' 
+                        value={this.state.email}
                         onChange={e => this.updateLoginPage(e)}
                     />
                     <br />
@@ -67,11 +75,15 @@ export default class LoginPage extends React.Component {
                     <br />
                     <button onClick={e => this.onSubmit(e)}>Submit</button>
                 </form>
+                
+                {/*
                 <div className={'nav-items'}>
                     <Link to={place}>
                         <button>Go to upload</button>
                     </Link>
                 </div>
+                */}
+
                 <p>{JSON.stringify(this.state)}</p>
             </div>
         )

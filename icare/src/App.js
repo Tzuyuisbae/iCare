@@ -5,7 +5,7 @@ import './App.css';
 import LoginPage from './pages/LoginPage';
 import UploadPage from './pages/UploadPage';
 import ErrorPage from './pages/ErrorPage';
-import Navbar from './components/Navbar';
+import QueryPage from './pages/QueryPage';
 
 class App extends Component {
 
@@ -17,6 +17,7 @@ class App extends Component {
         <Switch>
           <Route path="/" component={LoginPage} exact />
           <Route path="/upload" component={UploadPage}/>
+          <Route path="/query" component={QueryPage} />
           <Route component={ErrorPage}/>
         </Switch>
       </BrowserRouter>
