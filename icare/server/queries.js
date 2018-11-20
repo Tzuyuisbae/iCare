@@ -6,7 +6,8 @@ var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OC
 module.exports = {
     clients: function(callback) {
         // clients added this month
-        var sql = `select * from client where MONTH='${months[d.getMonth()]}' and YEAR=${d.getFullYear()}`;
+        //var sql = `select * from client where MONTH='${months[d.getMonth()]}' and YEAR=${d.getFullYear()}`;
+        var sql = `select * from client`;
 
         var con = mysql.createConnection({
             host: "den1.mysql6.gear.host",
@@ -18,7 +19,6 @@ module.exports = {
         con.connect(function(err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-            if (err) throw err;
             callback(null, result);
             });
             con.end();
@@ -51,6 +51,7 @@ module.exports = {
             con.end();
           });
     },
+    
     /**
      * Query the count of number of referrals made in a given month, for some amount of needs
      * @param {Array} needs The needs to get the count of, for the given month and year
@@ -195,7 +196,7 @@ module.exports = {
     }
 }
 
-module.exports.getMultipleNeedsReferralsCount([`ITF: Level of community involvement Referrals`, `ITF: Level of community involvement`], [`APR`, '2018']);
-module.exports.getReferralsDetails([`ITF: Level of community involvement Referrals`, `ITF: Level of community involvement`], [`APR`, '2018'], ['`Postal Code where the service was received`', ] );
-module.exports.getServicesRecieved('community',  ['`Postal Code where the service was received`'], [`APR`, '2018'],);
-module.exports.getServicedRecievedMonthlyComparison('infoorient', '2018');
+//module.exports.getMultipleNeedsReferralsCount([`ITF: Level of community involvement Referrals`, `ITF: Level of community involvement`], [`APR`, '2018']);
+//module.exports.getReferralsDetails([`ITF: Level of community involvement Referrals`, `ITF: Level of community involvement`], [`APR`, '2018'], ['`Postal Code where the service was received`', '`Date of Birth (YYYY-MM-DD)`' ] );
+//module.exports.getServicesRecieved('community',  ['`Postal Code where the service was received`'], [`APR`, '2018'],);
+//module.exports.getServicedRecievedMonthlyComparison('infoorient', '2018');

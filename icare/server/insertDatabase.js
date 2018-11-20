@@ -80,7 +80,7 @@ function add_sheet_to_table(table, sheet) {
         //     if (i == rows.length) done();
         // });
 
-        var sql = "INSERT INTO " + table + " values ('APR', 2018, " + rows[i].join(", ") + ");";
+        var sql = "INSERT INTO " + table + ` values ('${months[d.getMonth()]}', ${d.getFullYear()}, ` + rows[i].join(", ") + ");";
 
         con.query(sql, function (err, result) {
             if (err) {
