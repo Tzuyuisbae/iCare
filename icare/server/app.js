@@ -1,6 +1,7 @@
 const queries = require('./queries.js');
 const insert = require('./insertDatabase.js');
 const download = require('./downloadQuery.js');
+const savedQueries = require('./saveQuery.js');
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
@@ -31,13 +32,15 @@ app.post('/upload', function(req, res) {
 });
 
 app.get('/query', (req, res) => {
-  queries.clients(function(err, result) {
-      if (!err) {
-        //res.json([{ express: 'Hello From Express' } ]);
-        res.json(result);
+  console.log(req.body.sql);
+  queries.query(req.body.sql, function(err, result) {
+    if (!err) {
+      if (result.length > 0) {
+        res.send(result);
       } else {
-          console.log('Error while performing Query.');
+        console.log('Error while performing query');
       }
+    }
   });
 });
 
@@ -73,6 +76,19 @@ app.post('/customquery', (req, res) => {
       } else {
         console.log('Error while performing query');
       }
+    }
+  });
+});
+
+app.post('/getSavedPresetQueries', (req, res) => {
+  const email = req.body.email;
+  console.log('hello');
+  savedQueries.getSavedQueries(email, function (err, result) {
+    if (!err) {
+      console.log(result);
+      res.send(result);
+    } else {
+      console.log(err.message);
     }
   });
 });
