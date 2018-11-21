@@ -27,7 +27,7 @@ app.post('/upload', function(req, res) {
       return res.status(500).send(err);
     
     insert.process_template(`${__dirname}/public/${req.body.filename}`)
-    res.send('File uploaded!');
+    res.json({msg: 'File uploaded!'});
   });
 });
 
@@ -65,6 +65,22 @@ app.post('/authenticate', (req, res) => {
           console.log('Error while performing Query.');
       }
   });
+});
+
+app.post('/insertAccount', (req, res) => {
+  insert.insertAccount(
+    req.body.Name,
+    req.body.email,
+    req.body.pass,
+    req.body.organization,
+    req.body.permissions,
+    function(err, result) {
+      if (err) {
+        res.json({error: err.message});
+      } else {
+        res.json({error: 'Success!'});
+      }
+    });
 });
 
 app.post('/customquery', (req, res) => {
