@@ -62,7 +62,7 @@ export default class LoginPage extends React.Component {
 
     render() {
         return (
-            <Page id="login" className="halfblue">
+        <Page id="login" className="halfblue">
             <div style={{marginTop: '65px'}}/>
             <div className = "row">
               <div className="col left">
@@ -75,11 +75,12 @@ export default class LoginPage extends React.Component {
                     <p className="signupText">Sign In</p>
                     <LoginForm history={this.props.history} />
                     <div className={'nav-items'}>
-                        <Link to={place}>
+                        <Link to={'/upload'}>
                             <button>Go to upload</button>
                         </Link>
                     </div>
                 </div>
+            </div>
           </Page>
         )
     }
