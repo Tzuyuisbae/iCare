@@ -41,8 +41,10 @@ function getSavedQueries (email, callback) {
     });
 }
 
+// getSavedQueries('ishan@email.com', function (err, result) {
+//     console.log(result);
+//     console.log(result['why']);
+//     console.log(Object.values(result));
+// });
 
-getSavedQueries('ishan@email.com', function (err, result) {
-    console.log(result);
-    console.log(Object.values(result));
-});
+module.exports.getSavedQueries = getSavedQueries;
