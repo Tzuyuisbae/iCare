@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
+import '../css/login.css';
 import '../css/main.css';
+import Navbar from '../components/Navbar';
+import {Link} from "react-router-dom";
+import LoginForm from "../components/LoginForm"
+import { browserHistory } from 'react-router';
 import axios from 'axios';
+import Page from '../Page.js';
+import iCareLogo from "../images/iCare.png"
 import Cookies from 'universal-cookie';
 
 export default class LoginPage extends React.Component {
@@ -53,39 +60,27 @@ export default class LoginPage extends React.Component {
         });
     };
 
-
     render() {
         return (
-            <div className="form">
-                <form>
-                    <input 
-                        id='email'
-                        placeholder='Email' 
-                        value={this.state.email}
-                        onChange={e => this.updateLoginPage(e)}
-                    />
-                    <br />
-                    <input 
-                        id='password'
-                        type='password'
-                        placeholder='Password' 
-                        value={this.state.password}
-                        onChange={e => this.updateLoginPage(e)}
-                    />
-                    <br />
-                    <button onClick={e => this.onSubmit(e)}>Submit</button>
-                </form>
-                
-                {/*
-                <div className={'nav-items'}>
-                    <Link to={place}>
-                        <button>Go to upload</button>
-                    </Link>
+            <Page id="login" className="halfblue">
+            <div style={{marginTop: '65px'}}/>
+            <div className = "row">
+              <div className="col left">
+                <img src={iCareLogo} className="iCare"/>
+                <span className="info infoText">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et vulputate nulla. Suspendisse ultrices non nulla at accumsan. Aliquam scelerisque efficitur tellus eu porttitor. Ut fermentum porttitor lectus, sed rhoncus ipsum tincidunt eget. Morbi blandit consequat odio sed commodo. In ut erat pharetra, tempor purus vitae, laoreet massa. Integer aliquam a nisi quis vulputate. Morbi condimentum nibh sed nibh fermentum sodales. Donec vestibulum egestas.
+                </span>
+              </div>
+              <div className="form right">
+                    <p className="signupText">Sign In</p>
+                    <LoginForm history={this.props.history} />
+                    <div className={'nav-items'}>
+                        <Link to={place}>
+                            <button>Go to upload</button>
+                        </Link>
+                    </div>
                 </div>
-                */}
-
-                <p>{JSON.stringify(this.state)}</p>
-            </div>
+          </Page>
         )
     }
 
