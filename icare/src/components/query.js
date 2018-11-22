@@ -42,7 +42,7 @@ export default class Query extends Component {
     render() {
         return (
             <div>
-                <Dropdown options={this.state.menuOptions} onChange={this._onSelect} placeholder="Select an option" />
+                <Dropdown options={this.state.menuOptions} onChange={this._onSelect} placeholder="Select an Query" />
                 <h2>{JSON.stringify(this.state.data[0])}</h2>
                 <JsonToTable json={this.state.data} /> 
                 <Download data={this.state.data} />

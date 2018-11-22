@@ -8,7 +8,36 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
-const customQueries = {'query1' : [`ITF: Level of community involvement Referrals`, `ITF: Level of community involvement`]};
+const customQueries = {
+  'query1': {
+    'options': [`IKO: Life in Canada`,
+      `IKO: Life in Canada Referrals`,
+      `IKO: Community and Government Services`,
+      `IKO: Community and Government Services Referrals`,
+      `IKO: Working in Canada`,
+      `IKO: Working in Canada Referrals`,
+      `IKO: Education in Canada`,
+      `IKO: Education in Canada Referrals`,
+      `ITF: Social networks`,
+      `ITF: Social networks Referrals`,
+      `ITF: Professional networks`,
+      `ITF: Professional networks Referrals`,
+      `ITF: Access to local community services`,
+      `ITF: Access to local community services Referrals`,
+      `ITF: Level of community involvement`,
+      `ITF: Level of community involvement Referrals`,
+      `Improve Language Skills`,
+      `Improve Language Skills Referrals`,
+      `Improve Other Skills`,
+      `Improve Other Skills Referrals`,
+      `Find employment`,
+      `Find employment Referrals`]
+  }
+};
+
+  const customQueryFunctions = {
+    'query1' : queries.getMultipleNeedsReferralsCount
+  }
 
 // default options
 app.use(fileUpload());
@@ -34,9 +63,7 @@ app.post('/upload', function(req, res) {
 });
 
 app.get('/getCustomQueryOptions', (req, res) => {
-  if (req.query.query == 'query1') {
-    res.send(customQueries.query1);
-  }
+  res.send(customQueries[req.query.query]);
 });
 
 app.get('/query', (req, res) => {
@@ -55,10 +82,12 @@ app.get('/query', (req, res) => {
 app.post('/customQuery', (req, res) => {
   const options = req.body.options;
   const date = req.body.date;
+  const query = req.body.query;
   console.log(options);
   console.log(date);
-  
-  queries.getMultipleNeedsReferralsCount(options, date, function(err, result) {
+  console.log(query);
+
+  customQueryFunctions[query](options, date, function(err, result) {
     if (!err) {
       console.log(result);
       res.send(result);

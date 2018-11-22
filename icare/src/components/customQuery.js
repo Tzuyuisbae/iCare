@@ -14,6 +14,7 @@ export default class CustomQuery extends Component {
         // data : []
         this.state = {
             options: [],
+            groupBy: [],
             selected: [],
             query: this.props.query,
             queryData: [],
@@ -46,7 +47,7 @@ export default class CustomQuery extends Component {
         } else {
 
             axios.post('http://localhost:8000/customQuery',
-                { 'options': this.state.selected, 'date': [this.state.month, this.state.year] },
+                { 'options': this.state.selected, 'date': [this.state.month, this.state.year], query: this.state.query },
                 { headers: { 'Content-Type': 'application/json' } })
                 .then(res => {
                     if (res.data.length == 0) {
@@ -63,7 +64,7 @@ export default class CustomQuery extends Component {
         axios.get('http://localhost:8000/getCustomQueryOptions',
             { params: { query: this.state.query} })
             .then(res => {
-                this.setState({ options: res.data });
+                this.setState({ options: res.data.options });
             });
     }
 
@@ -73,6 +74,17 @@ export default class CustomQuery extends Component {
         let checkOptions = [];
         for (var i = 0; i < this.state.options.length; i++ ) {
             checkOptions.push(<label><Checkbox value={this.state.options[i]} /> {this.state.options[i]} <br /></label>);
+        }
+
+        let groupByOptions = [];
+        let groupByHeader;
+
+        if (this.state.groupBy.length !=0) {
+            groupByHeader = <div><h1>SOrt By:</h1></div>
+        }
+        
+        for (var i = 0; i < this.state.groupBy.length; i++ ) {
+            groupByOptions.push(<label><Checkbox value={this.state.groupBy[i]} /> {this.state.groupBy[i]} <br /></label>);
         }
 
         const d = new Date();
@@ -111,6 +123,7 @@ export default class CustomQuery extends Component {
                     onChange={e => this.updateDate(e)}
                 />
                 <br />
+
                 <button onClick={e => this.onRetrieveQuery(e)}>Query data </button>
                 <p>{JSON.stringify(this.state)}</p>
                 <JsonToTable json={this.state.queryData} />
