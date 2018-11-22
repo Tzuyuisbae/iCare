@@ -26,6 +26,27 @@ function insertAccount(name, email, pass, organization, permissions, callback) {
     });
 }
 
+function changePassword(email, newPassword, callback) {
+
+    var sql = `UPDATE accounts SET Password='${newPassword}' WHERE \`Email\`='${email}'`;
+
+    var con = mysql.createConnection({
+        host: "den1.mysql6.gear.host",
+        user: "icare",
+        password: "team9!",
+        database: "icare"
+    });
+
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query(sql, function (err, result) {
+            callback(err, result);
+        });
+        con.end();
+    });
+    
+}
+
 function parse_sheet(sheet) {
     var rows = [];
     // ROW data starts at row 3 of excel file
