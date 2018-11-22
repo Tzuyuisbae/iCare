@@ -3,9 +3,13 @@ var xlsx = require('node-xlsx');
 var d = new Date();
 var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
-function insert (table, row, callback) {
-    var sql = "INSERT INTO " + table + " values (" + row.join(", ") + ");";
-    //console.log(sql);
+const defaultPreset = '{"Number of clients" : "select count(*) from client" , "Number of courses" : "select count(*) from `lt course setup`"}';
+
+function insertAccount(name, email, pass, organization, permissions, callback) {
+
+    var sql = `insert into accounts values ('${name}', '${email}', '${pass}', '${organization}', '${permissions}', '${defaultPreset}')`
+    console.log(sql);
+    
     var con = mysql.createConnection({
         host: "den1.mysql6.gear.host",
         user: "icare",
@@ -13,22 +17,34 @@ function insert (table, row, callback) {
         database: "icare"
     });
 
-    con.connect((err) => {
-        if (err) {
-            throw err;
-        }
-        console.log("Connected!");
+    con.connect(function(err) {
+        if (err) throw err;
         con.query(sql, function (err, result) {
-            if (err) {
-                callback(err);
-            } else {
-                console.log('shit inserted');
-            }
+            callback(err, result);
         });
         con.end();
     });
+}
 
-    return 'success';
+function changePassword(email, newPassword, callback) {
+
+    var sql = `UPDATE accounts SET Password='${newPassword}' WHERE \`Email\`='${email}'`;
+
+    var con = mysql.createConnection({
+        host: "den1.mysql6.gear.host",
+        user: "icare",
+        password: "team9!",
+        database: "icare"
+    });
+
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query(sql, function (err, result) {
+            callback(err, result);
+        });
+        con.end();
+    });
+    
 }
 
 function parse_sheet(sheet) {
@@ -148,9 +164,15 @@ function process_template(filepath) {
 }
 
 module.exports.parse_sheet = parse_sheet;
+module.exports.insertAccount = insertAccount;
 module.exports.fix_row_types = fix_row_types;  
 module.exports.add_sheet_to_table = add_sheet_to_table;  
 module.exports.process_template = process_template;
+
+changePassword('ishan@email.com', 'newPassword', function(err, result) {
+    if(err) console.log(err.message);
+});
+
 //module.exports.insert = insert;
 
 // console.log('Date of Birth (YYYY-MM-DD)'.includes("Date"));

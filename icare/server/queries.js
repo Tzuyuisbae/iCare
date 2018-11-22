@@ -7,7 +7,7 @@ module.exports = {
     clients: function(callback) {
         // clients added this month
         //var sql = `select * from client where MONTH='${months[d.getMonth()]}' and YEAR=${d.getFullYear()}`;
-        var sql = `select * from client`;
+        var sql = `select count(*) from client`;
 
         var con = mysql.createConnection({
             host: "den1.mysql6.gear.host",
@@ -57,7 +57,7 @@ module.exports = {
      * @param {Array} needs The needs to get the count of, for the given month and year
      * @param {Array} date The date to query [month, year]
      */
-    getMultipleNeedsReferralsCount: function(needs, date) {
+    getMultipleNeedsReferralsCount: function(needs, date, callback) {
         var table = '`needs assessment`';
         var sql = 'select '
 
@@ -67,7 +67,7 @@ module.exports = {
             sql = sql + temp;
         }
         sql = sql + `(SELECT Count(*) FROM ${table} WHERE \`${needs[i]}\` = 'Yes' and MONTH='${date[0]}' and YEAR=${date[1]}) as '${needs[i]}';`
-        console.log(sql)
+        //console.log(sql)
 
         var con = mysql.createConnection({
             host: "den1.mysql6.gear.host",
@@ -76,11 +76,10 @@ module.exports = {
             database: "icare"
         });
 
-        con.connect(function(err) {
+        con.connect(function (err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log(result);
+                callback(err, result);
             });
             con.end();
         });
@@ -170,6 +169,27 @@ module.exports = {
             if (err) throw err;
             console.log(result);
             });
+            con.end();
+        });
+    },
+
+    /**
+     * Manual SQL query from user 
+     * @param {String} sql the sql string 
+     */
+    query: function(sql, callback) {
+        var con = mysql.createConnection({
+            host: "den1.mysql6.gear.host",
+            user: "icare",
+            password: "team9!",
+            database: "icare"
+        });
+
+        con.connect(function(err) {
+            if (err) throw err;
+            con.query(sql, function (err, result) {
+                callback(err, result);
+            })
             con.end();
         });
     }

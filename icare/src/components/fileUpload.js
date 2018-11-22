@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
 
@@ -13,7 +13,6 @@ export default class FileUpload extends React.Component {
     }
     
     onDrop = (files) => {
-      this.setState({uploadStatus: files[0].name});
       
       const config = { headers: { 'Content-Type': 'multipart/form-data' } };
       const url = "http://localhost:8000/upload";
@@ -23,9 +22,9 @@ export default class FileUpload extends React.Component {
       fd.append('filename', files[0].name);
 
       axios.post(url, fd, config)
-            .then(function (res) {
+            .then( (res) => {
               // File uploaded successfully
-              console.log(res.data);
+              this.setState(this.setState({uploadStatus : JSON.stringify(res.data)}));
             })
             .catch(function (err) {
               console.error('err', err);
@@ -33,8 +32,8 @@ export default class FileUpload extends React.Component {
     }
     render() {
       return (
-        <Dropzone onDrop={(files) => this.onDrop(files)}>
-            <div>Try dropping some files here, or click to select files to upload. {this.state.uploadStatus}</div>
+        <Dropzone accept=".xlsx, .xls" onDrop={(files) => this.onDrop(files)}>
+            <div>Click here, or drag an iCare file in this box {this.state.uploadStatus}</div>
         </Dropzone>
       )
     }
