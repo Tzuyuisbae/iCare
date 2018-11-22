@@ -7,7 +7,7 @@ module.exports = {
     clients: function(callback) {
         // clients added this month
         //var sql = `select * from client where MONTH='${months[d.getMonth()]}' and YEAR=${d.getFullYear()}`;
-        var sql = `select * from client`;
+        var sql = `select count(*) from client`;
 
         var con = mysql.createConnection({
             host: "den1.mysql6.gear.host",

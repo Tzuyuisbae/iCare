@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/main.css';
 import FileUpload from '../components/fileUpload.js';
+import InsertAccount from '../components/insertAccount';
 import Query from '../components/query.js';
 import Navbar from '../components/Navbar';
 import Cookies from 'universal-cookie';
@@ -17,6 +18,7 @@ export default class UploadPage extends React.Component {
                 <div>
                     <FileUpload />
                     <Query />
+                    <InsertAccount />
                 </div>
             </div>
         )
