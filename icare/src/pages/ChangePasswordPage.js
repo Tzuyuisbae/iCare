@@ -1,13 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../css/main.css';
-import FileUpload from '../components/fileUpload.js';
-import Query from '../components/query.js';
-import {Link} from "react-router-dom";
-import Cookies from 'universal-cookie';
-import cookie from './LoginPage';
-import LoginPage from './LoginPage';
 import axios from 'axios';
-
 
 export default class ChangePasswordPage extends React.Component {
 
@@ -15,7 +8,6 @@ export default class ChangePasswordPage extends React.Component {
     {
         email: '',
         newPassword: '',
-        canchange: false,
         data : {},
     }
 
@@ -27,41 +19,27 @@ export default class ChangePasswordPage extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const cookie = new Cookies();
-        cookie.set('email', this.state.email, { path: '/' });
 
-        axios.post('http://localhost:8000/authenticate',
-            { 'email': this.state.email, 'password': this.state.newPassword },
-            { headers: { 'Content-Type': 'application/json' } })
+        axios.post('http://localhost:8000/changePassword',
+            { 'email': this.state.email, 'newPassword': this.state.newPassword },
+            { headers: { 'Content-Type': 'application/json' }})
             .then(res => {
-                this.setState({
-                    ...this.state,
-                    data: res.data
+                this.setState({ 
+                    ...this.state, 
+                    data: res.data 
                 });
-
-                if (this.state.data.authenticated) {
-                    cookie.set('permissions', 1, { path: '/' });
-                    this.props.history.push({
-                        pathname: "/upload",
-                        state: {
-                            permissions: res.data.permissions,
-                            email: this.state.email,
-                        }
-                    });
-                }
-                else {
-                    console.log('failed');
-                }
             })
 
+        if(!this.state.data.authenticated){
+            alert('failed');
+        }
         this.setState({
             email: '',
-            password: ''
+            password: '',
         });
     };
 
     render() {
-        const place = !this.state.canchange ? '/LoginPage' : '/ChangePasswordForm';
         return (
             <div className="ChangePasswordForm">
                 <form>
@@ -82,6 +60,8 @@ export default class ChangePasswordPage extends React.Component {
                     <br />
                     <button onClick={e => this.onSubmit(e)}>Submit</button>
                 </form>
+                <p>{JSON.stringify(this.state)}</p>
+
             </div>
         )
     }   

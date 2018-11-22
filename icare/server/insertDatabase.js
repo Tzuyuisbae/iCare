@@ -28,7 +28,8 @@ function insertAccount(name, email, pass, organization, permissions, callback) {
 
 function changePassword(email, newPassword, callback) {
 
-    var sql = `UPDATE accounts SET Password='${newPassword}' WHERE \`Email\`='${email}'`;
+    var sql = `UPDATE accounts SET \`Password\`='${newPassword}' WHERE \`Email\`='${email}'`;
+    console.log(sql);
 
     var con = mysql.createConnection({
         host: "den1.mysql6.gear.host",
@@ -163,6 +164,7 @@ function process_template(filepath) {
     }
 }
 
+module.exports.changePassword = changePassword;
 module.exports.parse_sheet = parse_sheet;
 module.exports.insertAccount = insertAccount;
 module.exports.fix_row_types = fix_row_types;  

@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import UploadPage from './pages/UploadPage';
 import ErrorPage from './pages/ErrorPage';
 import QueryPage from './pages/QueryPage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
           <Route path="/" component={LoginPage} exact />
           <Route path="/upload" component={UploadPage}/>
           <Route path="/query" component={QueryPage} />
+          <Route path="/changePassword" component={ChangePasswordPage} />
           <Route component={ErrorPage}/>
         </Switch>
       </BrowserRouter>
