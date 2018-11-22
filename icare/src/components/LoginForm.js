@@ -40,7 +40,6 @@ export default class LoginForm extends React.Component {
                 console.log('failed');
             }
         })
-        // this.props.history.push("/upload")
     };
 
 

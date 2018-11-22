@@ -29,7 +29,7 @@ export default class LoginPage extends React.Component {
               </div>
               <div className="form right">
                     <p className="signupText">Sign In</p>
-                    <LoginForm />
+                    <LoginForm history={this.props.history} />
                     <div className={'nav-items'}>
                         <Link to={place}>
                             <button>Go to upload</button>
