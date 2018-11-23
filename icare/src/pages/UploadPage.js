@@ -11,9 +11,34 @@ import Cookies from 'universal-cookie';
 
 
 export default class UploadPage extends React.Component {
+    constructor(){
+        super();
+        this.state={
+            thanks: false
+        }
+    };
+
+    sayThanks = () => {
+        this.setState({
+            thanks: true
+        })
+    }
 
     render() {
         const cookie = new Cookies();
+        const display = this.state.thanks ? 
+        (<div className="col3"><p className="thanks">Thanks!</p></div>)
+        :
+        (<div className="col2">
+            <h1 className="signupText">Fill Out The Form</h1>
+            <Link to={'/'}>
+                <button>Go to Login</button>
+            </Link>
+            <FileUpload thanks={() => this.sayThanks()} />
+            <Query />
+            <InsertAccount />
+            </div>);
+
         return (
             <div>
             <div className="topleft">
@@ -23,16 +48,7 @@ export default class UploadPage extends React.Component {
                 <div className="pos">
                    <Navbar permissions={cookie.get('permissions')}/>
                     <div className="form">
-                        <div className="col2">
-                                <h1 className="signupText">Fill Out The Form</h1>
-                                <Link to={'/'}>
-                                    <button>Go to Login</button>
-                                </Link>
-                                <FileUpload />
-                                <Query />
-                                <InsertAccount />
-                                <button className="button">Submit</button>
-                        </div>
+                        {display}
                     </div>
                 </div>
             </Page>

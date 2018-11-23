@@ -82,7 +82,7 @@ export default class InsertAccount extends React.Component {
                 />
                 </label>
                 <br />
-                <button onClick={e => this.onSubmit(e)}>Submit </button>
+                <button onClick={e => this.onSubmit(e)} className="button">Submit </button>
                 <br />
                 <h1>{this.state.status}</h1>
             </form>

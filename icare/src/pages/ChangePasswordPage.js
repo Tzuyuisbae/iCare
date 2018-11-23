@@ -1,6 +1,8 @@
 import React from 'react';
 import '../css/main.css';
+import '../css/Page.css';
 import axios from 'axios';
+import Page from "../Page";
 
 export default class ChangePasswordPage extends React.Component {
 
@@ -36,26 +38,34 @@ export default class ChangePasswordPage extends React.Component {
 
     render() {
         return (
-            <div className="ChangePasswordForm">
-                <form>
-                    <input 
-                        id='email'
-                        placeholder='Email' 
-                        value={this.state.email}
-                        onChange={e => this.updateChangePasswordPage(e)}
-                    />
-                    <br />
-                    <input 
-                        id='newPassword'
-                        type='password'
-                        placeholder='New Password' 
-                        value={this.state.newPassword}
-                        onChange={e => this.updateChangePasswordPage(e)}
-                    />
-                    <br />
-                    <button onClick={e => this.onSubmit(e)}>Submit</button>
-                </form>
-            </div>
+            <Page className="fullblue">
+                <div className="pos">
+                    <form className="form">
+                        <div className="col2">
+                            <h1 className="signupText">Change Password</h1>
+                            <input 
+                                id='email'
+                                placeholder='Email' 
+                                value={this.state.email}
+                                onChange={e => this.updateChangePasswordPage(e)}
+                                className="input"
+                            />
+                            <br />
+                            <input 
+                                id='newPassword'
+                                type='password'
+                                placeholder='New Password' 
+                                value={this.state.newPassword}
+                                onChange={e => this.updateChangePasswordPage(e)}
+                                className="input"
+                            />
+                            <br />
+                            <button onClick={e => this.onSubmit(e)} className="button">Submit</button>
+                            <button onClick={() => this.props.history.push('/upload')} className="button">Go Back</button>
+                        </div>
+                    </form>
+                </div>
+            </Page>
         )
     }   
 }

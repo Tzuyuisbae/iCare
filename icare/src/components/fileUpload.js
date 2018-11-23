@@ -29,12 +29,21 @@ export default class FileUpload extends React.Component {
             .catch(function (err) {
               console.error('err', err);
             });
+      this.props.thanks();
     }
+
+    test = () => {
+      this.props.thanks();
+    }
+
     render() {
       return (
+        <div>
         <Dropzone accept=".xlsx, .xls" onDrop={(files) => this.onDrop(files)}>
             <div>Click here, or drag an iCare file in this box {this.state.uploadStatus}</div>
         </Dropzone>
+        <button onClick={() => this.test()}>Test</button>
+        </div>
       )
     }
   }
