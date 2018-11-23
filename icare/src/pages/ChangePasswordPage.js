@@ -24,19 +24,14 @@ export default class ChangePasswordPage extends React.Component {
             { 'email': this.state.email, 'newPassword': this.state.newPassword },
             { headers: { 'Content-Type': 'application/json' }})
             .then(res => {
+                alert(res.data.status);
                 this.setState({ 
                     ...this.state, 
                     data: res.data 
                 });
+
             })
 
-        if(!this.state.data.authenticated){
-            alert('failed');
-        }
-        this.setState({
-            email: '',
-            password: '',
-        });
     };
 
     render() {

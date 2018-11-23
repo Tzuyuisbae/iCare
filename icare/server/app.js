@@ -47,13 +47,12 @@ app.get('/query', (req, res) => {
 app.post('/changePassword', (req, res) => {
 
   insert.changePassword(req.body.email, req.body.newPassword , function(err, result){
-    if (err) {
-      res.json({ authenticated: false });
-      console.log(err.message)
-    } else {
-      res.json({ authenticated: true });
-    }
 
+    if (result.affectedRows === 0) {
+      res.json({ status: 'Failure!' });
+    } else {
+      res.json({ status: 'Success!' });
+    }
   });
 });
 
