@@ -55,8 +55,6 @@ export default class ChangePasswordPage extends React.Component {
                     <br />
                     <button onClick={e => this.onSubmit(e)}>Submit</button>
                 </form>
-                <p>{JSON.stringify(this.state)}</p>
-
             </div>
         )
     }   

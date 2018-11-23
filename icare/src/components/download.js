@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+
 
 export default class Download extends Component {
 
@@ -15,8 +17,12 @@ export default class Download extends Component {
         //     url: 'http://localhost:8000/download',
         //     method: 'POST',
         //     responseType: 'blob' // important
+    
+        // get user's saved queries from database
+        const cookie = new Cookies();
+
         axios.post('http://localhost:8000/download',
-        {'query' : this.props.data},
+        {'query' : this.props.data, 'email' : cookie.get('email')},
         {responseType: 'blob'}
         ).then((response) => {
              const url = window.URL.createObjectURL(new Blob([response.data]));

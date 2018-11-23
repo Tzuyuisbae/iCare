@@ -29,7 +29,6 @@ function insertAccount(name, email, pass, organization, permissions, callback) {
 function changePassword(email, newPassword, callback) {
 
     var sql = `UPDATE accounts SET \`Password\`='${newPassword}' WHERE \`Email\`='${email}'`;
-    console.log(sql);
 
     var con = mysql.createConnection({
         host: "den1.mysql6.gear.host",
@@ -170,6 +169,7 @@ module.exports.insertAccount = insertAccount;
 module.exports.fix_row_types = fix_row_types;  
 module.exports.add_sheet_to_table = add_sheet_to_table;  
 module.exports.process_template = process_template;
+
 //module.exports.insert = insert;
 
 // console.log('Date of Birth (YYYY-MM-DD)'.includes("Date"));

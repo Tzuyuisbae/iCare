@@ -3,6 +3,10 @@ var mysql = require('mysql');
 var d = new Date();
 var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
+function addQuotations(value, index, array) {
+    return "`" + value + "`"
+}
+
 module.exports = {
     clients: function(callback) {
         // clients added this month
@@ -57,7 +61,7 @@ module.exports = {
      * @param {Array} needs The needs to get the count of, for the given month and year
      * @param {Array} date The date to query [month, year]
      */
-    getMultipleNeedsReferralsCount: function(needs, date) {
+    getMultipleNeedsReferralsCount: function(needs, date, callback) {
         var table = '`needs assessment`';
         var sql = 'select '
 
@@ -67,7 +71,7 @@ module.exports = {
             sql = sql + temp;
         }
         sql = sql + `(SELECT Count(*) FROM ${table} WHERE \`${needs[i]}\` = 'Yes' and MONTH='${date[0]}' and YEAR=${date[1]}) as '${needs[i]}';`
-        console.log(sql)
+        //console.log(sql)
 
         var con = mysql.createConnection({
             host: "den1.mysql6.gear.host",
@@ -76,11 +80,10 @@ module.exports = {
             database: "icare"
         });
 
-        con.connect(function(err) {
+        con.connect(function (err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log(result);
+                callback(err, result, sql);
             });
             con.end();
         });
@@ -92,9 +95,11 @@ module.exports = {
      * @param {Array} date Array representing month and year wanted [month, year]
      * @param {Array} groupBy Array of fields to group the query by (e.g age, DOB, postal code)
      */
-    getReferralsDetails: function(needs, date, groupBy) {
+    getReferralsDetails: function(needs, date, groupBy, callback) {
         var table = '`needs assessment`';
-        var sql = 'select * from'
+        var sql = 'select * from';
+
+        groupBy = groupBy.map(addQuotations);
 
         var i = 0;
         for (; i < needs.length-1; i++) {
@@ -114,8 +119,7 @@ module.exports = {
         con.connect(function(err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log(result);
+                callback(err, result, sql);
             });
             con.end();
         });
@@ -127,9 +131,11 @@ module.exports = {
      * @param {Array} groupBy Array of fields to group the query by (e.g age, DOB, postal code)
      * @param {Array} date Array representing month and year wanted [month, year]
      */
-    getServicesRecieved: function(service, groupBy, date) {
-        
-        var sql = `select count(*) as 'Count', ${groupBy.join(",")} from ${service} where MONTH='${date[0]}' and YEAR=${date[1]} group by ${groupBy.join(',')}`;
+    getServicesRecieved: function(service, date, groupBy, callback) {
+
+        groupBy = groupBy.map(addQuotations);
+
+        var sql = `select count(*) as 'Count', ${groupBy.join(",")} from \`${service}\` where MONTH='${date[0]}' and YEAR=${date[1]} group by ${groupBy.join(',')}`;
         console.log(sql);
         var con = mysql.createConnection({
             host: "den1.mysql6.gear.host",
@@ -141,8 +147,7 @@ module.exports = {
         con.connect(function(err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log(result);
+                callback(err, result, sql);
             });
             con.end();
         });
@@ -153,9 +158,9 @@ module.exports = {
      * @param {String} service Which service you want to recieve info on (e.g community, employment)
      * @param {String} Year Year wanted
      */
-    getServicedRecievedMonthlyComparison: function(service, year) {
+    getServicedRecievedMonthlyComparison: function(service, year, callback) {
 
-        var sql = `select MONTH, count(*) as 'Count' from ${service} where YEAR=${year} group by MONTH`;
+        var sql = `select MONTH, count(*) as 'Count' from \`${service}\` where YEAR=${year} group by MONTH`;
         console.log(sql);
         var con = mysql.createConnection({
             host: "den1.mysql6.gear.host",
@@ -167,7 +172,7 @@ module.exports = {
         con.connect(function(err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-            if (err) throw err;
+            callback(err, result, sql);
             console.log(result);
             });
             con.end();

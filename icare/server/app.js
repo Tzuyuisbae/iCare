@@ -8,6 +8,61 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
+
+const groupByOptions = [
+  `Postal Code where the service was received`,
+  `Date of Birth (YYYY-MM-DD)`,
+  `Official Language of Preference`,
+  `Care for Newcomer Children`,
+  `Translation?`];
+
+const customQueries = {
+  'needs': {
+    'options': 
+    [ `IKO: Life in Canada`,
+      `IKO: Life in Canada Referrals`,
+      `IKO: Community and Government Services`,
+      `IKO: Community and Government Services Referrals`,
+      `IKO: Working in Canada`,
+      `IKO: Working in Canada Referrals`,
+      `IKO: Education in Canada`,
+      `IKO: Education in Canada Referrals`,
+      `ITF: Social networks`,
+      `ITF: Social networks Referrals`,
+      `ITF: Professional networks`,
+      `ITF: Professional networks Referrals`,
+      `ITF: Access to local community services`,
+      `ITF: Access to local community services Referrals`,
+      `ITF: Level of community involvement`,
+      `ITF: Level of community involvement Referrals`,
+      `Improve Language Skills`,
+      `Improve Language Skills Referrals`,
+      `Improve Other Skills`,
+      `Improve Other Skills Referrals`,
+      `Find employment`,
+      `Find employment Referrals`],
+    'groupBy' : groupByOptions
+  },
+
+  'services': {
+    'services': 
+    [ 'community',
+      'employment',
+      'infoorient',
+      'lt client enroll'],
+    'groupBy': groupByOptions
+  },
+  'monthlyServices': {
+    'services': 
+    [ 'community',
+      'employment',
+      'infoorient',
+      'lt client enroll',
+      'lt client exit'],
+    'groupBy': []
+  }
+};
+
 // default options
 app.use(fileUpload());
 app.use(cors());
@@ -15,20 +70,44 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/upload', function(req, res) {
+
+  const date = new Date();
+  const d = date.valueOf();
+
   if (Object.keys(req.files).length == 0) {
     return res.status(400).send('No files were uploaded.');
   }
+  const filepath = `${__dirname}/public/` + d + `_${req.body.filename}`;
+
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let sampleFile = req.files.file;
 
   // Use the mv() method to place the file somewhere on your server
-  sampleFile.mv(`${__dirname}/public/${req.body.filename}`, function(err) {
+  sampleFile.mv(filepath, function(err) {
     if (err)
       return res.status(500).send(err);
     
-    insert.process_template(`${__dirname}/public/${req.body.filename}`)
+    insert.process_template(filepath)
     res.json({msg: 'File uploaded!'});
   });
+});
+
+app.get('/getCustomQueryOptions', (req, res) => {
+  res.send(customQueries[req.query.queryID]);
+});
+
+app.post('/saveQuery', (req, res) => {
+  const sql = req.body.sql;
+  const name = req.body.name;
+  const email = req.body.email;
+  savedQueries.saveQuery(email, name, sql, function(err, result) {
+    if (!err) {
+      res.send({ error : 'Success!' })
+    } else {
+      res.send({error : err.message});
+    }
+  });
+
 });
 
 app.get('/query', (req, res) => {
@@ -56,13 +135,59 @@ app.post('/changePassword', (req, res) => {
   });
 });
 
+app.post('/customQueryServices', (req, res) => {
+  const service = req.body.service;
+  const date = req.body.date;
+  const groupBy = req.body.groupBySelected;
+
+  queries.getServicesRecieved(service, date, groupBy, function (err, result, sql) {
+    if (!err) {
+      console.log(result);
+      res.send({result : result, sql : sql});
+    }
+  });
+});
+
+app.post('/customQueryMonthly', (req, res) => {
+  const service = req.body.service;
+  const year = req.body.year;
+
+  queries.getServicedRecievedMonthlyComparison(service, year, function (err, result, sql) {
+    if (!err) {
+      console.log({result : result, sql : sql});
+      res.send({result : result, sql : sql});
+    }
+  });
+});
+
+app.post('/customQueryNeeds', (req, res) => {
+  const options = req.body.options;
+  const date = req.body.date;
+  const groupBy = req.body.groupBySelected;
+  console.log(options);
+  console.log(date);
+
+  if (groupBy.length === 0) {
+    queries.getMultipleNeedsReferralsCount(options, date, function (err, result, sql) {
+      if (!err) {
+        console.log({result : result, sql : sql});
+        res.send({result : result, sql : sql});
+      }
+    });
+  } else {
+    queries.getReferralsDetails(options, date, groupBy, function (err, result, sql) {
+      if (!err) {
+        console.log({result : result, sql : sql});
+        res.send({result : result, sql : sql});
+      }
+    });
+  }
+});
+
 app.post('/download', (req, res) => {
-  console.log(req.body.query);
-  download.getCSV(req.body.query, function (filepath) {
+  download.getCSV(req.body.query, req.body.email, function (filepath) {
     res.download(filepath);
   });
-  // var file = __dirname + '/public/kanye.jpg';
-  // res.download(file);
 });
 
 app.post('/authenticate', (req, res) => {
@@ -86,26 +211,13 @@ app.post('/insertAccount', (req, res) => {
     req.body.pass,
     req.body.organization,
     req.body.permissions,
-    function(err, result) {
+    function (err, result) {
       if (err) {
-        res.json({error: err.message});
+        res.json({ error: err.message });
       } else {
-        res.json({error: 'Success!'});
+        res.json({ error: 'Success!' });
       }
     });
-});
-
-app.post('/customquery', (req, res) => {
-  console.log(req.body.sql);
-  queries.query(req.body.sql, function(err, result) {
-    if (!err) {
-      if (result.length > 0) {
-        res.send(result);
-      } else {
-        console.log('Error while performing query');
-      }
-    }
-  });
 });
 
 app.get('/getSavedPresetQueries', (req, res) => {
