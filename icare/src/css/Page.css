@@ -1,0 +1,33 @@
+.halfblue {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 60px 25px;
+    background: linear-gradient(to right, #FFFFFF 60%, #1C4196 40%);
+}
+@media (min-width: 768px) {
+  .halfblue {
+    min-height: 100vh;
+    padding: 60px 20px;
+  }
+}
+
+.fullblue {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 60px 25px;
+    background-color: #1C4196;
+}
+@media (min-width: 768px) {
+  .fullblue {
+    min-height: 100vh;
+    padding: 60px 20px;
+  }
+}
+
+/*# sourceMappingURL=Page.css.map */
