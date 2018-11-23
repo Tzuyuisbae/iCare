@@ -1,8 +1,9 @@
 var mysql = require('mysql');
 
-function saveQuery(email, nameOfQuery, query) {
-    var sql = `UPDATE accounts SET saved_queries=JSON_SET(saved_queries,  '$.${nameOfQuery}', '${query}') where email='${email}';`;
+function saveQuery(email, nameOfQuery, query, callback) {
+    var sql = `UPDATE accounts SET saved_queries=JSON_SET(saved_queries,  '$."${nameOfQuery}"', "${query}") where email='${email}';`;
 
+    console.log(sql);
     var con = mysql.createConnection({
         host: "den1.mysql6.gear.host",
         user: "icare",
@@ -13,9 +14,7 @@ function saveQuery(email, nameOfQuery, query) {
     con.connect(function(err) {
         if (err) throw err;
         con.query(sql, function (err, result) {
-            if (err) {
-                console.log(err.message);
-            }
+            callback(err, result);
         });
         con.end();
     });
@@ -48,3 +47,4 @@ function getSavedQueries (email, callback) {
 // });
 
 module.exports.getSavedQueries = getSavedQueries;
+module.exports.saveQuery = saveQuery;

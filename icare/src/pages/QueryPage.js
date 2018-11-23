@@ -57,10 +57,11 @@ export default class QueryPage extends React.Component {
                 <br/>
                 <Query />
                 <br />
+                <h1>Custom Query Needs</h1>
                 <CustomQueryNeeds />
-                <br />
+                <h1>Custom Query Services</h1>
                 <CustomQueryServices />
-                <br />
+                <h1>Custom Query Monthly</h1>
                 <CustomQueryMonthly />
             </div>
         )

@@ -83,7 +83,7 @@ module.exports = {
         con.connect(function (err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-                callback(err, result);
+                callback(err, result, sql);
             });
             con.end();
         });
@@ -119,7 +119,7 @@ module.exports = {
         con.connect(function(err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-                callback(err, result);
+                callback(err, result, sql);
             });
             con.end();
         });
@@ -135,7 +135,7 @@ module.exports = {
 
         groupBy = groupBy.map(addQuotations);
 
-        var sql = `select count(*) as 'Count', ${groupBy.join(",")} from ${service} where MONTH='${date[0]}' and YEAR=${date[1]} group by ${groupBy.join(',')}`;
+        var sql = `select count(*) as 'Count', ${groupBy.join(",")} from \`${service}\` where MONTH='${date[0]}' and YEAR=${date[1]} group by ${groupBy.join(',')}`;
         console.log(sql);
         var con = mysql.createConnection({
             host: "den1.mysql6.gear.host",
@@ -147,7 +147,7 @@ module.exports = {
         con.connect(function(err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-                callback(err, result);
+                callback(err, result, sql);
             });
             con.end();
         });
@@ -160,7 +160,7 @@ module.exports = {
      */
     getServicedRecievedMonthlyComparison: function(service, year, callback) {
 
-        var sql = `select MONTH, count(*) as 'Count' from ${service} where YEAR=${year} group by MONTH`;
+        var sql = `select MONTH, count(*) as 'Count' from \`${service}\` where YEAR=${year} group by MONTH`;
         console.log(sql);
         var con = mysql.createConnection({
             host: "den1.mysql6.gear.host",
@@ -172,7 +172,7 @@ module.exports = {
         con.connect(function(err) {
             if (err) throw err;
             con.query(sql, function (err, result) {
-            callback(err, result);
+            callback(err, result, sql);
             console.log(result);
             });
             con.end();

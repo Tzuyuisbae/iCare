@@ -3,6 +3,7 @@ import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 import { JsonToTable } from "react-json-to-table";
 import Download from './download';
 import axios from 'axios';
+import SaveQuery from './saveQuery';
 import Cookies from 'universal-cookie';
 import Dropdown from 'react-dropdown';
 
@@ -20,6 +21,7 @@ export default class CustomQueryServices extends Component {
             queryData: [],
             month: 'JAN',
             year: '2018',
+            sql: ''
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.updateMenu = this.updateMenu.bind(this);
@@ -64,7 +66,7 @@ export default class CustomQueryServices extends Component {
                     if (res.data == undefined) {
                         alert('An error has occured. Please make sure the input is valid');
                     } else {
-                        this.setState({ queryData: res.data })
+                        this.setState({ queryData: res.data.result, sql: res.data.sql });
                     }
                 });
         }
@@ -139,8 +141,8 @@ export default class CustomQueryServices extends Component {
                 <button onClick={e => this.onRetrieveQuery(e)}>Query data </button>
                 <p>{JSON.stringify(this.state)}</p>
                 <JsonToTable json={this.state.queryData} />
-
-
+                <br/> 
+                <SaveQuery sql={this.state.sql} />
             </div>
         );
     }

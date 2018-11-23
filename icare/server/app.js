@@ -49,8 +49,7 @@ const customQueries = {
     [ 'community',
       'employment',
       'infoorient',
-      'lt client enroll',
-      'lt client exit'],
+      'lt client enroll'],
     'groupBy': groupByOptions
   },
   'monthlyServices': {
@@ -94,8 +93,21 @@ app.post('/upload', function(req, res) {
 });
 
 app.get('/getCustomQueryOptions', (req, res) => {
-  console.log(customQueries[req.query.queryID]);
   res.send(customQueries[req.query.queryID]);
+});
+
+app.post('/saveQuery', (req, res) => {
+  const sql = req.body.sql;
+  const name = req.body.name;
+  const email = req.body.email;
+  savedQueries.saveQuery(email, name, sql, function(err, result) {
+    if (!err) {
+      res.send({ error : 'Success!' })
+    } else {
+      res.send({error : err.message});
+    }
+  });
+
 });
 
 app.get('/query', (req, res) => {
@@ -116,10 +128,10 @@ app.post('/customQueryServices', (req, res) => {
   const date = req.body.date;
   const groupBy = req.body.groupBySelected;
 
-  queries.getServicesRecieved(service, date, groupBy, function (err, result) {
+  queries.getServicesRecieved(service, date, groupBy, function (err, result, sql) {
     if (!err) {
       console.log(result);
-      res.send(result);
+      res.send({result : result, sql : sql});
     }
   });
 });
@@ -128,10 +140,10 @@ app.post('/customQueryMonthly', (req, res) => {
   const service = req.body.service;
   const year = req.body.year;
 
-  queries.getServicedRecievedMonthlyComparison(service, year, function (err, result) {
+  queries.getServicedRecievedMonthlyComparison(service, year, function (err, result, sql) {
     if (!err) {
-      console.log(result);
-      res.send(result);
+      console.log({result : result, sql : sql});
+      res.send({result : result, sql : sql});
     }
   });
 });
@@ -144,17 +156,17 @@ app.post('/customQueryNeeds', (req, res) => {
   console.log(date);
 
   if (groupBy.length === 0) {
-    queries.getMultipleNeedsReferralsCount(options, date, function (err, result) {
+    queries.getMultipleNeedsReferralsCount(options, date, function (err, result, sql) {
       if (!err) {
-        console.log(result);
-        res.send(result);
+        console.log({result : result, sql : sql});
+        res.send({result : result, sql : sql});
       }
     });
   } else {
-    queries.getReferralsDetails(options, date, groupBy, function (err, result) {
+    queries.getReferralsDetails(options, date, groupBy, function (err, result, sql) {
       if (!err) {
-        console.log(result);
-        res.send(result);
+        console.log({result : result, sql : sql});
+        res.send({result : result, sql : sql});
       }
     });
   }

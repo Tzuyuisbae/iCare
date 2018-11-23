@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 import { JsonToTable } from "react-json-to-table";
+import SaveQuery from './saveQuery';
 import Download from './download';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -20,9 +21,10 @@ export default class CustomQueryNeeds extends Component {
             queryData: [],
             month: 'JAN',
             year: '2018',
+            sql : ''
         }
         this.componentDidMount = this.componentDidMount.bind(this);
-        this.updateDate = this.updateDate.bind(this);
+        this.updateMenu = this.updateMenu.bind(this);
         this.handleOptionCheckbox = this.handleOptionCheckbox.bind(this);
         this.handleGroupByCheckbox = this.handleGroupByCheckbox.bind(this);
         this.onRetrieveQuery = this.onRetrieveQuery.bind(this);
@@ -40,7 +42,7 @@ export default class CustomQueryNeeds extends Component {
         });
     }
 
-    updateDate = e => {
+    updateMenu = e => {
         this.setState({
             [e.target.id]: e.target.value
         });
@@ -63,7 +65,7 @@ export default class CustomQueryNeeds extends Component {
                     if (res.data == undefined) {
                         alert('An error has occured. Please make sure the input is valid');
                     } else {
-                        this.setState({ queryData: res.data })
+                        this.setState({ queryData: res.data.result, sql: res.data.sql })
                     }
                 });
         }
@@ -107,7 +109,7 @@ export default class CustomQueryNeeds extends Component {
                     {checkOptions}
                 </CheckboxGroup>
                 <br />
-                <select id="month" value={this.state.month} onChange={this.updateDate}>
+                <select id="month" value={this.state.month} onChange={this.updateMenu}>
                     <option value="JAN">January</option>
                     <option value="FEB">Febuary</option>
                     <option value="MAR">March</option>
@@ -127,7 +129,7 @@ export default class CustomQueryNeeds extends Component {
                     min="2017"
                     max={y}
                     value={this.state.year}
-                    onChange={e => this.updateDate(e)}
+                    onChange={e => this.updateMenu(e)}
                 />
                 <br />
                 {groupByHeader}
@@ -141,9 +143,10 @@ export default class CustomQueryNeeds extends Component {
                 <br />
                 <button onClick={e => this.onRetrieveQuery(e)}>Query data </button>
                 <p>{JSON.stringify(this.state)}</p>
+
                 <JsonToTable json={this.state.queryData} />
-
-
+                <br/>
+                <SaveQuery sql={this.state.sql}/>
             </div>
         );
     }
