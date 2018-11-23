@@ -169,10 +169,6 @@ module.exports.fix_row_types = fix_row_types;
 module.exports.add_sheet_to_table = add_sheet_to_table;  
 module.exports.process_template = process_template;
 
-changePassword('ishan@email.com', 'newPassword', function(err, result) {
-    if(err) console.log(err.message);
-});
-
 //module.exports.insert = insert;
 
 // console.log('Date of Birth (YYYY-MM-DD)'.includes("Date"));

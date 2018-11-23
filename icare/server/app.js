@@ -8,8 +8,15 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
+const groupByOptions = [
+  `Postal Code where the service was received`,
+  `Date of Birth (YYYY-MM-DD)`,
+  `Official Language of Preference`,
+  `Care for Newcomer Children`,
+  `Translation?`];
+
 const customQueries = {
-  'query1': {
+  'needs': {
     'options': [`IKO: Life in Canada`,
       `IKO: Life in Canada Referrals`,
       `IKO: Community and Government Services`,
@@ -31,12 +38,24 @@ const customQueries = {
       `Improve Other Skills`,
       `Improve Other Skills Referrals`,
       `Find employment`,
-      `Find employment Referrals`]
+      `Find employment Referrals`],
+    'groupBy' : []
+  },
+
+  'query2': {
+    'options': ['community',
+      'employment',
+      'infoorient',
+      'lt client enroll',
+      'lt client exit'],
+    'groupBy': groupByOptions
   }
 };
 
+
   const customQueryFunctions = {
-    'query1' : queries.getMultipleNeedsReferralsCount
+    'needs' : queries.getMultipleNeedsReferralsCount,
+    'referralsDetails' : queries.getReferralsDetails
   }
 
 // default options
@@ -63,7 +82,7 @@ app.post('/upload', function(req, res) {
 });
 
 app.get('/getCustomQueryOptions', (req, res) => {
-  res.send(customQueries[req.query.query]);
+  res.send(customQueries[req.query.queryID]);
 });
 
 app.get('/query', (req, res) => {
@@ -82,12 +101,12 @@ app.get('/query', (req, res) => {
 app.post('/customQuery', (req, res) => {
   const options = req.body.options;
   const date = req.body.date;
-  const query = req.body.query;
+  const queryID = req.body.queryID;
   console.log(options);
   console.log(date);
-  console.log(query);
+  console.log(queryID);
 
-  customQueryFunctions[query](options, date, function(err, result) {
+  customQueryFunctions[queryID](options, date, function(err, result) {
     if (!err) {
       console.log(result);
       res.send(result);

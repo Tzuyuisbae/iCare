@@ -15,20 +15,21 @@ export default class CustomQuery extends Component {
         this.state = {
             options: [],
             groupBy: [],
-            selected: [],
-            query: this.props.query,
+            optionsSelected: [],
+            groupBySelected: [],
+            queryID: this.props.queryID,
             queryData: [],
-            month : 'hello',
-            year : '2018',
+            month: 'JAN',
+            year: '2018',
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.updateDate = this.updateDate.bind(this);
         this.handleCheckboxes = this.handleCheckboxes.bind(this);
     }
 
-    handleCheckboxes = (selected) => {
+    handleCheckboxes = (optionsSelected) => {
         this.setState({
-            selected: selected
+            optionsSelected: optionsSelected
         });
     }
 
@@ -38,22 +39,22 @@ export default class CustomQuery extends Component {
         });
     };
 
-    
+
     onRetrieveQuery = e => {
         e.preventDefault();
 
-        if (this.state.selected.length == 0) {
+        if (this.state.optionsSelected.length === 0) {
             alert('Please select an option')
         } else {
 
             axios.post('http://localhost:8000/customQuery',
-                { 'options': this.state.selected, 'date': [this.state.month, this.state.year], query: this.state.query },
+                { 'options': this.state.optionsSelected, 'date': [this.state.month, this.state.year], queryID: this.state.queryID },
                 { headers: { 'Content-Type': 'application/json' } })
                 .then(res => {
-                    if (res.data.length == 0) {
+                    if (res.data.length === 0) {
                         alert('An error has occured. Please make sure the input is valid');
                     } else {
-                        this.setState({queryData : res.data})
+                        this.setState({ queryData: res.data })
                     }
                 });
         }
@@ -62,9 +63,9 @@ export default class CustomQuery extends Component {
     componentDidMount() {
 
         axios.get('http://localhost:8000/getCustomQueryOptions',
-            { params: { query: this.state.query} })
+            { params: { queryID: this.state.queryID } })
             .then(res => {
-                this.setState({ options: res.data.options });
+                this.setState({ options: res.data.options, groupBy: res.data.groupBy });
             });
     }
 
@@ -72,18 +73,18 @@ export default class CustomQuery extends Component {
         // the checkboxes can be arbitrarily deep. They will always be fetched and
         // attached the `name` attribute correctly. `value` is optional
         let checkOptions = [];
-        for (var i = 0; i < this.state.options.length; i++ ) {
+        for (var i = 0; i < this.state.options.length; i++) {
             checkOptions.push(<label><Checkbox value={this.state.options[i]} /> {this.state.options[i]} <br /></label>);
         }
 
         let groupByOptions = [];
-        let groupByHeader;
+        let groupByHeader = '';
 
-        if (this.state.groupBy.length !=0) {
-            groupByHeader = <div><h1>SOrt By:</h1></div>
+        if (this.state.groupBy.length != 0) {
+            groupByHeader = <h1>Sort By:</h1>;
         }
-        
-        for (var i = 0; i < this.state.groupBy.length; i++ ) {
+
+        for (var i = 0; i < this.state.groupBy.length; i++) {
             groupByOptions.push(<label><Checkbox value={this.state.groupBy[i]} /> {this.state.groupBy[i]} <br /></label>);
         }
 
@@ -95,7 +96,7 @@ export default class CustomQuery extends Component {
                 <CheckboxGroup
                     checkboxDepth={2} // This is needed to optimize the checkbox group
                     name="options"
-                    value={this.state.selected}
+                    value={this.state.optionsSelected}
                     onChange={this.handleCheckboxes}>
                     {checkOptions}
                 </CheckboxGroup>
@@ -114,7 +115,7 @@ export default class CustomQuery extends Component {
                     <option value="NOV">November</option>
                     <option value="DEC">December</option>
                 </select>
-                <input 
+                <input
                     id='year'
                     type="number"
                     min="2017"
@@ -123,12 +124,20 @@ export default class CustomQuery extends Component {
                     onChange={e => this.updateDate(e)}
                 />
                 <br />
-
+                {groupByHeader}
+                <CheckboxGroup
+                    checkboxDepth={12} // This is needed to optimize the checkbox group
+                    name="options"
+                    value={this.state.optionsSelected}
+                    onChange={this.handleCheckboxes}>
+                    {groupByOptions}
+                </CheckboxGroup>
+                <br />
                 <button onClick={e => this.onRetrieveQuery(e)}>Query data </button>
                 <p>{JSON.stringify(this.state)}</p>
                 <JsonToTable json={this.state.queryData} />
 
-            
+
             </div>
         );
     }

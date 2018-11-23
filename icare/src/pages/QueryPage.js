@@ -55,7 +55,8 @@ export default class QueryPage extends React.Component {
                 <br/>
                 <Query />
                 <br />
-                <CustomQuery query='query1'/>
+                <CustomQuery queryID='needs'/>
+                <CustomQuery queryID='query2'/>
             </div>
         )
     }
