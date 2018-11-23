@@ -2,7 +2,9 @@ import React from 'react';
 import '../css/main.css';
 import Navbar from '../components/Navbar';
 import Query from '../components/query';
-import CustomQuery from '../components/customQuery';
+import CustomQueryNeeds from '../components/customQueryNeeds';
+import CustomQueryServices from '../components/customQueryServices';
+import CustomQueryMonthly from '../components/customQueryMonthly';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 import { JsonToTable } from "react-json-to-table";
@@ -55,8 +57,11 @@ export default class QueryPage extends React.Component {
                 <br/>
                 <Query />
                 <br />
-                <CustomQuery queryID='needs'/>
-                <CustomQuery queryID='query2'/>
+                <CustomQueryNeeds />
+                <br />
+                <CustomQueryServices />
+                <br />
+                <CustomQueryMonthly />
             </div>
         )
     }

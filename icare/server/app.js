@@ -8,6 +8,7 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
+
 const groupByOptions = [
   `Postal Code where the service was received`,
   `Date of Birth (YYYY-MM-DD)`,
@@ -17,7 +18,8 @@ const groupByOptions = [
 
 const customQueries = {
   'needs': {
-    'options': [`IKO: Life in Canada`,
+    'options': 
+    [ `IKO: Life in Canada`,
       `IKO: Life in Canada Referrals`,
       `IKO: Community and Government Services`,
       `IKO: Community and Government Services Referrals`,
@@ -39,24 +41,28 @@ const customQueries = {
       `Improve Other Skills Referrals`,
       `Find employment`,
       `Find employment Referrals`],
-    'groupBy' : []
+    'groupBy' : groupByOptions
   },
 
-  'query2': {
-    'options': ['community',
+  'services': {
+    'services': 
+    [ 'community',
       'employment',
       'infoorient',
       'lt client enroll',
       'lt client exit'],
     'groupBy': groupByOptions
+  },
+  'monthlyServices': {
+    'services': 
+    [ 'community',
+      'employment',
+      'infoorient',
+      'lt client enroll',
+      'lt client exit'],
+    'groupBy': []
   }
 };
-
-
-  const customQueryFunctions = {
-    'needs' : queries.getMultipleNeedsReferralsCount,
-    'referralsDetails' : queries.getReferralsDetails
-  }
 
 // default options
 app.use(fileUpload());
@@ -65,23 +71,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/upload', function(req, res) {
+
+  const date = new Date();
+  const d = date.valueOf();
+
   if (Object.keys(req.files).length == 0) {
     return res.status(400).send('No files were uploaded.');
   }
+  const filepath = `${__dirname}/public/` + d + `_${req.body.filename}`;
+
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let sampleFile = req.files.file;
 
   // Use the mv() method to place the file somewhere on your server
-  sampleFile.mv(`${__dirname}/public/${req.body.filename}`, function(err) {
+  sampleFile.mv(filepath, function(err) {
     if (err)
       return res.status(500).send(err);
     
-    insert.process_template(`${__dirname}/public/${req.body.filename}`)
+    insert.process_template(filepath)
     res.json({msg: 'File uploaded!'});
   });
 });
 
 app.get('/getCustomQueryOptions', (req, res) => {
+  console.log(customQueries[req.query.queryID]);
   res.send(customQueries[req.query.queryID]);
 });
 
@@ -98,15 +111,12 @@ app.get('/query', (req, res) => {
   });
 });
 
-app.post('/customQuery', (req, res) => {
-  const options = req.body.options;
+app.post('/customQueryServices', (req, res) => {
+  const service = req.body.service;
   const date = req.body.date;
-  const queryID = req.body.queryID;
-  console.log(options);
-  console.log(date);
-  console.log(queryID);
+  const groupBy = req.body.groupBySelected;
 
-  customQueryFunctions[queryID](options, date, function(err, result) {
+  queries.getServicesRecieved(service, date, groupBy, function (err, result) {
     if (!err) {
       console.log(result);
       res.send(result);
@@ -114,13 +124,46 @@ app.post('/customQuery', (req, res) => {
   });
 });
 
+app.post('/customQueryMonthly', (req, res) => {
+  const service = req.body.service;
+  const year = req.body.year;
+
+  queries.getServicedRecievedMonthlyComparison(service, year, function (err, result) {
+    if (!err) {
+      console.log(result);
+      res.send(result);
+    }
+  });
+});
+
+app.post('/customQueryNeeds', (req, res) => {
+  const options = req.body.options;
+  const date = req.body.date;
+  const groupBy = req.body.groupBySelected;
+  console.log(options);
+  console.log(date);
+
+  if (groupBy.length === 0) {
+    queries.getMultipleNeedsReferralsCount(options, date, function (err, result) {
+      if (!err) {
+        console.log(result);
+        res.send(result);
+      }
+    });
+  } else {
+    queries.getReferralsDetails(options, date, groupBy, function (err, result) {
+      if (!err) {
+        console.log(result);
+        res.send(result);
+      }
+    });
+  }
+});
+
 app.post('/download', (req, res) => {
-  console.log(req.body.query);
-  download.getCSV(req.body.query, function (filepath) {
+  download.getCSV(req.body.query, req.body.email, function (filepath) {
     res.download(filepath);
   });
-  // var file = __dirname + '/public/kanye.jpg';
-  // res.download(file);
 });
 
 app.post('/authenticate', (req, res) => {
@@ -144,11 +187,11 @@ app.post('/insertAccount', (req, res) => {
     req.body.pass,
     req.body.organization,
     req.body.permissions,
-    function(err, result) {
+    function (err, result) {
       if (err) {
-        res.json({error: err.message});
+        res.json({ error: err.message });
       } else {
-        res.json({error: 'Success!'});
+        res.json({ error: 'Success!' });
       }
     });
 });
