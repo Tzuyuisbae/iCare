@@ -29,6 +29,7 @@ export default class LoginPage extends React.Component {
         e.preventDefault();
         const cookie = new Cookies();
         cookie.set('email', this.state.email, {path: '/'});
+        console.log("cookie has been set");
 
         axios.post('http://localhost:8000/authenticate', 
         {'email':this.state.email, 'password':this.state.password},
@@ -40,7 +41,7 @@ export default class LoginPage extends React.Component {
             });
             
             if(this.state.data.authenticated){
-                cookie.set('permissions', 1, {path: '/'});
+                cookie.set('permissions', res.data.permissions, {path: '/'});
                 this.props.history.push({
                     pathname : "/upload",
                     state : {
@@ -66,7 +67,7 @@ export default class LoginPage extends React.Component {
             <div style={{marginTop: '65px'}}/>
             <div className = "row">
               <div className="col left">
-                <img src={iCareLogo} className="iCare"/>
+                <img src={iCareLogo} alt="fun" className="iCare"/>
                 <span className="info infoText">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et vulputate nulla. Suspendisse ultrices non nulla at accumsan. Aliquam scelerisque efficitur tellus eu porttitor. Ut fermentum porttitor lectus, sed rhoncus ipsum tincidunt eget. Morbi blandit consequat odio sed commodo. In ut erat pharetra, tempor purus vitae, laoreet massa. Integer aliquam a nisi quis vulputate. Morbi condimentum nibh sed nibh fermentum sodales. Donec vestibulum egestas.
                 </span>
