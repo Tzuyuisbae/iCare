@@ -11,7 +11,7 @@ export default class Navbar extends React.Component {
     home = <li><NavLink to="/">Home</NavLink></li>;
     upload = <li><NavLink to="/upload">Upload</NavLink></li>;
     query = <li><NavLink to="/query">Query</NavLink></li>;
-    password = <li><NavLink to="/">Change password</NavLink></li>;
+    password = <li><NavLink to="/changePassword">Change password</NavLink></li>;
     signout = <li><NavLink to="/">Sign Out</NavLink></li>;
     
     if (this.props.permissions == 1) {

@@ -1,6 +1,10 @@
 import React from 'react';
 import '../css/main.css';
 import Navbar from '../components/Navbar';
+import Query from '../components/query';
+import CustomQueryNeeds from '../components/customQueryNeeds';
+import CustomQueryServices from '../components/customQueryServices';
+import CustomQueryMonthly from '../components/customQueryMonthly';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 import { JsonToTable } from "react-json-to-table";
@@ -21,8 +25,8 @@ export default class QueryPage extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        axios.post('http://localhost:8000/customquery', 
-            {sql: this.state.sql}
+        axios.get('http://localhost:8000/query', 
+            {params: {sql: this.state.sql}}
         ).then((res) => {
             console.log(this.state.sql);
             this.setState({data: res.data});
@@ -50,6 +54,15 @@ export default class QueryPage extends React.Component {
 
                 <p>{JSON.stringify(this.state)}</p>
                 <JsonToTable json={this.state.data} />
+                <br/>
+                <Query />
+                <br />
+                <h1>Custom Query Needs</h1>
+                <CustomQueryNeeds />
+                <h1>Custom Query Services</h1>
+                <CustomQueryServices />
+                <h1>Custom Query Monthly</h1>
+                <CustomQueryMonthly />
             </div>
         )
     }

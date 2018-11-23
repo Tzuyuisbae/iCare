@@ -17,7 +17,7 @@ export default class InsertAccount extends React.Component {
         }
     }
 
-    updateLoginForm = e => {
+    updateAccountForm = e => {
         this.setState({
             [e.target.id]: e.target.value
         });
@@ -30,7 +30,11 @@ export default class InsertAccount extends React.Component {
         {'email':this.state.email, 'pass':this.state.pass, 'Name' : this.state.Name, 'organization' : this.state.organization, 'permissions': this.state.permissions},
         {headers :{'Content-Type': 'application/json'}})
         .then (res => {
-            this.setState({status: JSON.stringify(res.data)})
+            if (res.data.error !== 'Success!') {
+                alert('An error has occured. Please make sure the input is valid');
+            } else {
+                alert('Success!');
+            }
         })
     };
 
@@ -41,7 +45,7 @@ export default class InsertAccount extends React.Component {
                     id='Name'
                     placeholder='Name' 
                     value={this.state.Name}
-                    onChange={e => this.updateLoginForm(e)}
+                    onChange={e => this.updateAccountForm(e)}
                 />
                 <br />
                 <input 
@@ -49,29 +53,34 @@ export default class InsertAccount extends React.Component {
                     type='email'
                     placeholder='email' 
                     value={this.state.email}
-                    onChange={e => this.updateLoginForm(e)}
+                    onChange={e => this.updateAccountForm(e)}
                 />
                 <br />
                 <input 
                     id='pass'
                     placeholder='password' 
                     value={this.state.password}
-                    onChange={e => this.updateLoginForm(e)}
+                    onChange={e => this.updateAccountForm(e)}
                 />
                 <br />
                 <input 
                     id='organization'
                     placeholder='organization' 
                     value={this.state.organization}
-                    onChange={e => this.updateLoginForm(e)}
+                    onChange={e => this.updateAccountForm(e)}
                 />
                 <br />
+                <label>
+                    Permissions: 
                 <input 
                     id='permissions'
-                    placeholder='permissions (0 or 1)' 
+                    type="number"
+                    min="0"
+                    max="1"
                     value={this.state.permissions}
-                    onChange={e => this.updateLoginForm(e)}
+                    onChange={e => this.updateAccountForm(e)}
                 />
+                </label>
                 <br />
                 <button onClick={e => this.onSubmit(e)}>Submit </button>
                 <br />

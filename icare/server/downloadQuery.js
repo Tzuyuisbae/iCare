@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-function getCSVString(data, callback) {
+function getCSVString(data) {
     const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
     const header = Object.keys(data[0])
     let csv = data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
@@ -11,9 +11,11 @@ function getCSVString(data, callback) {
 }
 
 
-function getCSV(data, callback) {
+function getCSV(data, user, callback) {
     var csv = getCSVString(data);
-    var filepath = __dirname + '/download/' + 'test.csv';
+    var date = new Date();
+    var d = date.valueOf();
+    var filepath = __dirname + '/download/' + d + '_' + user + '.csv';
     fs.writeFile(filepath, csv, function(err) {
         if(err) {
             return console.log(err);

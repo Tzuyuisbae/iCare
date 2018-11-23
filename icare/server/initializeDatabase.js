@@ -40,7 +40,7 @@ create_table("accounts",
 
 create_table("organization",
     " Name VARCHAR(255) PRIMARY KEY
-    */
+    
 // TODO: shorten the column headers
 
 create_table("client", 
@@ -64,7 +64,8 @@ create_table("client",
     " `Official Language of Preference` VARCHAR(255)," + 
     " `Consent for Future Research/Consultation` VARCHAR(255)," +
     " PRIMARY KEY (`Unique Identifier`, `Unique Identifier Value`)");
-/*
+
+    
 create_table("`needs assessment`",
 " `MONTH` ENUM ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC')," +
 " `YEAR` INT," +
@@ -413,6 +414,7 @@ create_table("employment",
 " `Reason for update` VARCHAR(60)," + 
 " PRIMARY KEY(`Unique Identifier`, `Unique Identifier Value`, `Update Record ID`, `MONTH`, `YEAR`)");
 
+*/
 // might add aa field to each table called month, who knows
 
 
@@ -611,7 +613,7 @@ create_table('`LT Client Exit`',
 " `Child 5: Type of Care` VARCHAR(60)," + 
 " `Transportation` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Provisions for disabilities` ENUM(\"Yes\", \"No\", \"\")," + 
-" `Translation` ENUM(\"Yes\", \"No\", \"\")," + 
+" `Translation?` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Translation language Between` VARCHAR(60)," + 
 " `Translation language And` VARCHAR(60)," + 
 " `Interpretation` ENUM(\"Yes\", \"No\", \"\")," + 
@@ -620,4 +622,3 @@ create_table('`LT Client Exit`',
 " `Crisis Counselling` ENUM(\"Yes\", \"No\", \"\")," + 
 " `Reason for update` VARCHAR(60),"+
 "PRIMARY KEY(`Unique Identifier Type`, `Unique Identifier Value`, `Update record ID`, `MONTH`, `YEAR`)");
-*/
