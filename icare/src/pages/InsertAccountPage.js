@@ -1,16 +1,18 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Cookies from 'universal-cookie';
+import InsertAccount from '../components/insertAccount';
 
-export default class InsertAccount extends React.Component {
+export default class InsertAccountPage extends React.Component {
     render() {
         const cookie = new Cookies();
 
         return (
-            <div className="insertAccount">
-                <Navbar permissions={cookie.get('permissions')}/>
+            <div className="InsertAccountPage">
+                <Navbar permissions={cookie.get('permissions')} />
                 <InsertAccount />
             </div>
+            
             
         );
     }

@@ -76,7 +76,8 @@ export default class InsertAccount extends React.Component {
                     id='permissions'
                     type="number"
                     min="0"
-                    max="1"
+                    mid="1"
+                    max="2"
                     value={this.state.permissions}
                     onChange={e => this.updateAccountForm(e)}
                 />

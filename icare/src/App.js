@@ -7,8 +7,8 @@ import UploadPage from './pages/UploadPage';
 import ErrorPage from './pages/ErrorPage';
 import QueryPage from './pages/QueryPage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
-import InsertAccount from './pages/InsertAccount';
 import Home from './pages/Home';
+import InsertAccountPage from './pages/InsertAccountPage';
 
 class App extends Component {
 
@@ -23,7 +23,7 @@ class App extends Component {
           <Route path="/upload" component={UploadPage}/>
           <Route path="/query" component={QueryPage} />
           <Route path="/changePassword" component={ChangePasswordPage} />
-          <Route path="/insertAccount" component={InsertAccount} />
+          <Route path="/insertAccount" component={InsertAccountPage} />
           <Route component={ErrorPage}/>
         </Switch>
       </BrowserRouter>
