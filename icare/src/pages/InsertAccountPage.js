@@ -10,6 +10,9 @@ export default class InsertAccountPage extends React.Component {
 
         return (
             <Page className="fullblue">
+                <div className="topleft">
+                    <p className="iCareWhite">iCare</p>
+                </div>
                 <Navbar permissions={cookie.get('permissions')} />
                 <InsertAccount />
             </Page>
