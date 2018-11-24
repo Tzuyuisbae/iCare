@@ -10,8 +10,14 @@ export default class Home extends React.Component {
         const cookie = new Cookies();
         return(
             <Page className="fullblue">
+                <div className="topleft">
+                    <p className="iCareWhite">iCare</p>
+                </div>
                 <Navbar permissions={cookie.get('permissions')} />
-                <div className="pos">Welcome to Icare!!!!</div>
+                <div className="pos">
+                    <h6 className="welcome">Welcome to the ICare web application!</h6>
+
+                </div>
             </Page>
         );
     }
