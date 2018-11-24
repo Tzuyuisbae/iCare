@@ -9,6 +9,7 @@ import QueryPage from './pages/QueryPage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
 import Home from './pages/Home';
 import InsertAccountPage from './pages/InsertAccountPage';
+import QueryDropdownPage from './pages/QueryDropdownPage';
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/home" component={Home} />
           <Route path="/upload" component={UploadPage}/>
           <Route path="/query" component={QueryPage} />
+          <Route path="/queryDropdown" component={QueryDropdownPage} />
           <Route path="/changePassword" component={ChangePasswordPage} />
           <Route path="/insertAccount" component={InsertAccountPage} />
           <Route component={ErrorPage}/>

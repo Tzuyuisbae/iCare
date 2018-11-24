@@ -33,12 +33,8 @@ export default class UploadPage extends React.Component {
         </div>)
         :
         (<div className="col2">
-            <h1 className="signupText">Fill Out The Form</h1>
-            <Link to={'/'}>
-                <button>Go to Login</button>
-            </Link>
+            <h1 className="signupText">Upload Excel File</h1>
             <FileUpload thanks={() => this.toggleThanks()} />
-            <Query />
         </div>);
 
         return (

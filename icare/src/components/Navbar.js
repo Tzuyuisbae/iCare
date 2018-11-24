@@ -7,13 +7,14 @@ export default class Navbar extends React.Component {
 
   authenticated() {
 
-    let home, upload, query, password, signout, insertAccount;
+    let home, upload, query, password, signout, insertAccount, queryDropdownPage;
     home = <NavLink className="navItem" to="/home">Home</NavLink>;
     upload = <NavLink className="navItem" to="/upload">Upload</NavLink>;
     query = <NavLink className="navItem" to="/query">Query</NavLink>;
     password = <NavLink className="navItem" to="/changePassword">Change password</NavLink>;
     signout = <NavLink className="navItem" to="/">Sign Out</NavLink>;
     insertAccount = <NavLink className="navItem" to="/insertAccount">Add Account</NavLink>;
+    queryDropdownPage = <NavLink className="navItem" to="/queryDropdown">Query</NavLink>
     
     if (this.props.permissions == 0) {
       return (
@@ -31,7 +32,7 @@ export default class Navbar extends React.Component {
         <div className="navBar">
           {home}
           {upload}
-          {query}
+          {queryDropdownPage}
           {password}
           {signout}
         </div>
