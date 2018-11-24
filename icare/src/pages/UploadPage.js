@@ -18,25 +18,28 @@ export default class UploadPage extends React.Component {
         }
     };
 
-    sayThanks = () => {
+    toggleThanks = () => {
         this.setState({
-            thanks: true
+            thanks: !this.state.thanks
         })
     }
 
     render() {
         const cookie = new Cookies();
         const display = this.state.thanks ? 
-        (<div className="col3"><p className="thanks">Thanks!</p></div>)
+        (<div className="col3">
+            <p className="thanks">Thanks!</p>
+            <button className="button" onClick={() => this.toggleThanks()}>Upload Again!</button>
+        </div>)
         :
         (<div className="col2">
             <h1 className="signupText">Fill Out The Form</h1>
             <Link to={'/'}>
                 <button>Go to Login</button>
             </Link>
-            <FileUpload thanks={() => this.sayThanks()} />
+            <FileUpload thanks={() => this.toggleThanks()} />
             <Query />
-            </div>);
+        </div>);
 
         return (
             <div>
