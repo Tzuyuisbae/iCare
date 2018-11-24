@@ -9,10 +9,10 @@ export default class Home extends React.Component {
     render() {
         const cookie = new Cookies();
         return(
-            <div className="Home">
+            <Page className="fullblue">
                 <Navbar permissions={cookie.get('permissions')} />
-                <div>Welcome to Icare!!!!</div>
-            </div>
+                <div className="pos">Welcome to Icare!!!!</div>
+            </Page>
         );
     }
 }
