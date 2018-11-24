@@ -12,60 +12,11 @@ import Cookies from 'universal-cookie';
 
 export default class LoginPage extends React.Component {
 
-    state = 
-    {
-        email: '',
-        password: '',
-        data : {},
-    }
-
     componentDidMount() {
         const cookie = new Cookies();
         cookie.remove('email');
         cookie.remove('permissions');
     }
-
-    updateLoginPage = e => {
-        this.setState({
-            [e.target.id]: e.target.value
-        });
-    };
-
-    onSubmit = e => {
-        e.preventDefault();
-        const cookie = new Cookies();
-        cookie.set('email', this.state.email, {path: '/'});
-        console.log("cookie has been set");
-
-        axios.post('http://localhost:8000/authenticate', 
-        {'email':this.state.email, 'password':this.state.password},
-        {headers :{'Content-Type': 'application/json'}})
-        .then(res => {
-            this.setState({ 
-                ...this.state, 
-                data: res.data 
-            });
-            
-            if(this.state.data.authenticated){
-                cookie.set('permissions', res.data.permissions, {path: '/'});
-                this.props.history.push({
-                    pathname : "/upload",
-                    state : {
-                        permissions: res.data.permissions,
-                        email: this.state.email,
-                    }
-                });
-            }
-            else{
-                console.log('failed');
-            }
-        })
-
-        this.setState({
-            email: '',
-            password: ''
-        });
-    };
 
     render() {
         return (

@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/main.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import Page from '../Page';
 
 export default class InsertAccount extends React.Component {
 
@@ -41,7 +40,6 @@ export default class InsertAccount extends React.Component {
 
     render () {
         return (
-            <Page className="fullblue">
                 <form className="form pos">
                     <h1 className="signupText">Insert Account</h1>
                     <input 
@@ -85,12 +83,9 @@ export default class InsertAccount extends React.Component {
                         onChange={e => this.updateAccountForm(e)}
                     />
                     </label>
-                    <br />
-                    <button onClick={e => this.onSubmit(e)} className="button">Submit </button>
-                    <br />
+                    <button onClick={e => this.onSubmit(e)} className="button2">Submit</button>
                     <h1>{this.state.status}</h1>
                 </form>
-            </Page>
         )
     }
 }

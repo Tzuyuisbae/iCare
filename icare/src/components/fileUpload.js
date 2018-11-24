@@ -21,19 +21,19 @@ export default class FileUpload extends React.Component {
       fd.append('file', files[0]);
       fd.append('filename', files[0].name);
 
-      axios.post(url, fd, config)
-            .then( (res) => {
-              // File uploaded successfully
-              this.setState(this.setState({uploadStatus : JSON.stringify(res.data)}));
-            })
-            .catch(function (err) {
-              console.error('err', err);
-            });
-      this.props.thanks();
-    }
-
-    test = () => {
-      this.props.thanks();
+      if (!files[0].name.includes('.xls')) {
+        alert('error');
+      } else {
+              axios.post(url, fd, config)
+           .then( (res) => {
+             // File uploaded successfully
+             this.setState(this.setState({uploadStatus : JSON.stringify(res.data)}));
+           })
+           .catch(function (err) {
+             console.error('err', err);
+           });
+     this.props.thanks();
+      }
     }
 
     render() {
@@ -42,7 +42,6 @@ export default class FileUpload extends React.Component {
         <Dropzone accept=".xlsx, .xls" onDrop={(files) => this.onDrop(files)}>
             <div>Click here, or drag an iCare file in this box {this.state.uploadStatus}</div>
         </Dropzone>
-        <button onClick={() => this.test()}>Test</button>
         </div>
       )
     }
