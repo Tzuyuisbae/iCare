@@ -71,7 +71,6 @@ export default class LoginForm extends React.Component {
                     />
                     <br />
                     <button onClick={e => this.onSubmit(e)} className="button">Sign In</button>
-                    <div>{this.state.email}</div>
                 </form>
         )
     }

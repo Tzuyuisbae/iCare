@@ -39,7 +39,7 @@ export default class QueryPage extends React.Component {
         const cookie = new Cookies();
         return (
             <div className="query">
-                <Navbar permissions={cookie.get('permissions')} />
+                {/* <Navbar permissions={cookie.get('permissions')} /> */}
                 <div className="error">{this.state.error}</div>
                 <form>
                     <input 
