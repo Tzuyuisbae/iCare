@@ -43,6 +43,7 @@ export default class InsertAccount extends React.Component {
         return (
             <Page className="fullblue">
                 <form className="form pos">
+                    <h1 className="signupText">Insert Account</h1>
                     <input 
                         id='Name'
                         placeholder='Name' 
@@ -50,7 +51,6 @@ export default class InsertAccount extends React.Component {
                         className="input"
                         onChange={e => this.updateAccountForm(e)}
                     />
-                    <br />
                     <input 
                         id='email'
                         type='email'
@@ -59,7 +59,6 @@ export default class InsertAccount extends React.Component {
                         className="input"
                         onChange={e => this.updateAccountForm(e)}
                     />
-                    <br />
                     <input 
                         id='pass'
                         placeholder='password' 
@@ -67,7 +66,6 @@ export default class InsertAccount extends React.Component {
                         className="input"
                         onChange={e => this.updateAccountForm(e)}
                     />
-                    <br />
                     <input 
                         id='organization'
                         placeholder='organization' 
@@ -75,7 +73,6 @@ export default class InsertAccount extends React.Component {
                         className="input"
                         onChange={e => this.updateAccountForm(e)}
                     />
-                    <br />
                     <label>
                         Permissions: 
                     <input 
