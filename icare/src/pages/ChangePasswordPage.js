@@ -3,6 +3,8 @@ import '../css/main.css';
 import '../css/Page.css';
 import axios from 'axios';
 import Page from "../Page";
+import Navbar from '../components/Navbar';
+import Cookies from 'universal-cookie';
 
 export default class ChangePasswordPage extends React.Component {
 
@@ -37,8 +39,13 @@ export default class ChangePasswordPage extends React.Component {
     };
 
     render() {
+        const cookie = new Cookies();
         return (
             <Page className="fullblue">
+                <div className="topleft">
+                    <p className="iCareWhite">iCare</p>
+                </div>
+                <Navbar permissions={cookie.get('permissions')}/>
                 <div className="pos">
                     <form className="form">
                         <div className="col2">
