@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/main.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import Page from '../Page';
 
 export default class InsertAccount extends React.Component {
 
@@ -40,53 +41,59 @@ export default class InsertAccount extends React.Component {
 
     render () {
         return (
-            <form>
-                <input 
-                    id='Name'
-                    placeholder='Name' 
-                    value={this.state.Name}
-                    onChange={e => this.updateAccountForm(e)}
-                />
-                <br />
-                <input 
-                    id='email'
-                    type='email'
-                    placeholder='email' 
-                    value={this.state.email}
-                    onChange={e => this.updateAccountForm(e)}
-                />
-                <br />
-                <input 
-                    id='pass'
-                    placeholder='password' 
-                    value={this.state.password}
-                    onChange={e => this.updateAccountForm(e)}
-                />
-                <br />
-                <input 
-                    id='organization'
-                    placeholder='organization' 
-                    value={this.state.organization}
-                    onChange={e => this.updateAccountForm(e)}
-                />
-                <br />
-                <label>
-                    Permissions: 
-                <input 
-                    id='permissions'
-                    type="number"
-                    min="0"
-                    mid="1"
-                    max="2"
-                    value={this.state.permissions}
-                    onChange={e => this.updateAccountForm(e)}
-                />
-                </label>
-                <br />
-                <button onClick={e => this.onSubmit(e)} className="button">Submit </button>
-                <br />
-                <h1>{this.state.status}</h1>
-            </form>
+            <Page className="fullblue">
+                <form className="form pos">
+                    <input 
+                        id='Name'
+                        placeholder='Name' 
+                        value={this.state.Name}
+                        className="input"
+                        onChange={e => this.updateAccountForm(e)}
+                    />
+                    <br />
+                    <input 
+                        id='email'
+                        type='email'
+                        placeholder='email' 
+                        value={this.state.email}
+                        className="input"
+                        onChange={e => this.updateAccountForm(e)}
+                    />
+                    <br />
+                    <input 
+                        id='pass'
+                        placeholder='password' 
+                        value={this.state.password}
+                        className="input"
+                        onChange={e => this.updateAccountForm(e)}
+                    />
+                    <br />
+                    <input 
+                        id='organization'
+                        placeholder='organization' 
+                        value={this.state.organization}
+                        className="input"
+                        onChange={e => this.updateAccountForm(e)}
+                    />
+                    <br />
+                    <label>
+                        Permissions: 
+                    <input 
+                        id='permissions'
+                        type="number"
+                        min="0"
+                        mid="1"
+                        max="2"
+                        value={this.state.permissions}
+                        onChange={e => this.updateAccountForm(e)}
+                    />
+                    </label>
+                    <br />
+                    <button onClick={e => this.onSubmit(e)} className="button">Submit </button>
+                    <br />
+                    <h1>{this.state.status}</h1>
+                </form>
+            </Page>
         )
     }
 }
