@@ -36,7 +36,6 @@ export default class UploadPage extends React.Component {
             </Link>
             <FileUpload thanks={() => this.sayThanks()} />
             <Query />
-            <InsertAccount />
             </div>);
 
         return (

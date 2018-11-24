@@ -19,6 +19,12 @@ export default class LoginPage extends React.Component {
         data : {},
     }
 
+    componentDidMount() {
+        const cookie = new Cookies();
+        cookie.remove('email');
+        cookie.remove('permissions');
+    }
+
     updateLoginPage = e => {
         this.setState({
             [e.target.id]: e.target.value

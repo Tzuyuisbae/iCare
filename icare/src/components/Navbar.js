@@ -7,14 +7,26 @@ export default class Navbar extends React.Component {
 
   authenticated() {
 
-    let home, upload, query, password, signout;
-    home = <NavLink className="navItem" to="/">Home</NavLink>;
+    let home, upload, query, password, signout, insertAccount;
+    home = <NavLink className="navItem" to="/home">Home</NavLink>;
     upload = <NavLink className="navItem" to="/upload">Upload</NavLink>;
     query = <NavLink className="navItem" to="/query">Query</NavLink>;
     password = <NavLink className="navItem" to="/changePassword">Change password</NavLink>;
     signout = <NavLink className="navItem" to="/">Sign Out</NavLink>;
+    insertAccount = <NavLink className="navItem" to="/insertAccount">Add Account</NavLink>;
     
-    if (this.props.permissions == 1) {
+    if (this.props.permissions == 0) {
+      return (
+        <div className="navBar">
+          {home}
+          {upload}
+          {query}
+          {password}
+          {insertAccount}
+          {signout}
+        </div>
+      );
+    } else if (this.props.permissions == 1){
       return (
         <div className="navBar">
           {home}
@@ -29,10 +41,9 @@ export default class Navbar extends React.Component {
         <div className="navBar">
           {home}
           {upload}
-          {password}
           {signout}
         </div>
-      );
+      )
     }
   }
 

@@ -33,7 +33,6 @@ function getSavedQueries (email, callback) {
     con.connect(function(err) {
         if (err) throw err;
         con.query(sql, function (err, result) {
-            //console.log(result);
             callback(err, JSON.parse(result[0].saved_queries));
         });
         con.end();
