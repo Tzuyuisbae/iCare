@@ -107,9 +107,9 @@ function add_sheet_to_table(table, sheet) {
         });
     }
     con.end();
-    function done() {
-        //console.log(status1);
-    }
+    // function done() {
+    //     //console.log(status1);
+    // }
 }
 
 function fix_row_types(header, rows) {

@@ -84,11 +84,10 @@ app.post('/upload', function(req, res) {
 
   // Use the mv() method to place the file somewhere on your server
   sampleFile.mv(filepath, function(err) {
-    if (err)
+    if (err) {
       return res.status(500).send(err);
-    
+    }
     insert.process_template(filepath)
-    res.json({msg: 'File uploaded!'});
   });
 });
 

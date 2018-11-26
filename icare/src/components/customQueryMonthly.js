@@ -44,6 +44,8 @@ export default class CustomQueryMonthly extends Component {
                 .then(res => {
                     if (res.data == undefined) {
                         alert('An error has occured. Please make sure the input is valid');
+                    } else if (res.data.result.length === 0) {
+                        alert('No data matches this query.');
                     } else {
                         this.setState({ queryData: res.data.result, sql: res.data.sql })
                     }

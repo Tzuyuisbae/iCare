@@ -12,8 +12,10 @@ export default class FileUpload extends React.Component {
         this.onDrop = this.onDrop.bind(this);
     }
     
-    onDrop = (files) => {
-      
+  onDrop = (files, rejected) => {
+
+    if (files.length !== 0) {
+
       const config = { headers: { 'Content-Type': 'multipart/form-data' } };
       const url = "http://localhost:8000/upload";
       let fd = new FormData();
@@ -21,20 +23,19 @@ export default class FileUpload extends React.Component {
       fd.append('file', files[0]);
       fd.append('filename', files[0].name);
 
-      if (!files[0].name.includes('.xls')) {
-        alert('error');
-      } else {
-              axios.post(url, fd, config)
-           .then( (res) => {
-             // File uploaded successfully
-             this.setState(this.setState({uploadStatus : JSON.stringify(res.data)}));
-           })
-           .catch(function (err) {
-             console.error('err', err);
-           });
-     this.props.thanks();
-      }
+      axios.post(url, fd, config)
+        .then((res) => {
+          // File uploaded successfully
+          this.setState(this.setState({ uploadStatus: JSON.stringify(res.data) }));
+        })
+        .catch(function (err) {
+          console.error('err', err);
+        });
+        this.props.thanks();
+    } else {
+      alert('Please upload an excel file.');
     }
+  }
 
     render() {
       return (
