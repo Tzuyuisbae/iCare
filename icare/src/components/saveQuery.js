@@ -3,6 +3,7 @@ import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 import { JsonToTable } from "react-json-to-table";
 import Download from './download';
 import axios from 'axios';
+import "../css/main.css"
 import Cookies from 'universal-cookie';
 import Dropdown from 'react-dropdown';
 
@@ -62,10 +63,13 @@ export default class SaveQuery extends Component {
                         id='name'
                         type="text"
                         pattern="[A-Za-z0-9]"
+                        placeholder="Enter Query To Save"
                         value={this.state.name}
                         onChange={e => this.updateMenu(e)}
+                        className="input"
                     />
-                    <button onClick={this.saveQuery}>Save Query</button>
+                    <br />
+                    <button onClick={this.saveQuery} className="download">Save Query</button>
                 </div>
             )
         }

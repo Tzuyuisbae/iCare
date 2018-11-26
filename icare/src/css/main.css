@@ -11,6 +11,31 @@
     border-style: solid;
 }
 
+.download{
+    width: 300px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 20px;
+    background-color: #1C4196;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    border-width: 1;
+    border-style: solid;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.wrapSearch{
+    position: relative;
+    align-items: center;
+}
+
+.wrapSearch img{
+    position: absolute;
+    top: 10px;
+    left: 280px;
+}
+
 .button {
     width: 100%;
     height: 40px;
@@ -48,15 +73,21 @@
 .pos{
     margin: 0 auto;
 }
+.query{
+    margin-left: 15%;
+}
 .thanks{
     font-size: 34px;
     font-family: "Montserrat", sans-serif;
     color: #1C4196;
     font-weight: normal;
 }
-
+.search{
+    height: 25px;
+    width: 25px;
+}
 .navBar{
-    position: absolute;
+    position: fixed;
     top: 75%;
     left: 2%;
     display: flex;

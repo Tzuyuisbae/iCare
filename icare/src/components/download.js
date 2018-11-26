@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import "../css/main.css"
 
 
 export default class Download extends Component {
@@ -37,7 +38,7 @@ export default class Download extends Component {
     render() {
         let downloadButton;
         if (this.props.data === undefined || this.props.data.length !== 0) {
-            downloadButton = <button onClick={this.onClick}> DOWNLOAD</button>;
+            downloadButton = <button onClick={this.onClick} className="download"> DOWNLOAD</button>;
         } else {
             downloadButton = '';
         }

@@ -68,7 +68,6 @@ export default class ChangePasswordPage extends React.Component {
                             />
                             <br />
                             <button onClick={e => this.onSubmit(e)} className="button">Submit</button>
-                            <button onClick={() => this.props.history.push('/upload')} className="button">Go Back</button>
                         </div>
                     </form>
                 </div>

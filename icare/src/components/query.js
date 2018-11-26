@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { JsonToTable } from "react-json-to-table";
 import Download from '../components/download';
 import axios from 'axios';
+import "../css/dropdown.css"
 import Cookies from 'universal-cookie';
 import Dropdown from 'react-dropdown';
 
@@ -42,8 +43,9 @@ export default class Query extends Component {
     render() {
         return (
             <div>
-                <Dropdown options={this.state.menuOptions} onChange={this._onSelect} placeholder="Select an Query" />
-                <h2>{JSON.stringify(this.state.data[0])}</h2>
+                <Dropdown options={this.state.menuOptions} onChange={this._onSelect} placeholder="Select A Saved Query" />
+                {/* <h2>{JSON.stringify(this.state.data[0])}</h2> */}
+                <br />
                 <JsonToTable json={this.state.data} /> 
                 <Download data={this.state.data} />
             </div>

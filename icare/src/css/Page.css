@@ -30,4 +30,20 @@
   }
 }
 
+.lilblue {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 60px 25px;
+  background: linear-gradient(to left, #FFFFFF 85%, #1C4196 15%);
+}
+@media (min-width: 768px) {
+.fullblue {
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+}
+
 /*# sourceMappingURL=Page.css.map */

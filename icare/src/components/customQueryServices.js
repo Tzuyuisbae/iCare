@@ -3,6 +3,7 @@ import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 import { JsonToTable } from "react-json-to-table";
 import Download from './download';
 import axios from 'axios';
+import "../css/main.css"
 import SaveQuery from './saveQuery';
 import Cookies from 'universal-cookie';
 import Dropdown from 'react-dropdown';
@@ -140,8 +141,8 @@ export default class CustomQueryServices extends Component {
                     {groupByOptions}
                 </CheckboxGroup>
                 <br />
-                <button onClick={e => this.onRetrieveQuery(e)}>Query data </button>
-                <p>{JSON.stringify(this.state)}</p>
+                <button onClick={e => this.onRetrieveQuery(e)} className="download">Query data </button>
+                {/* <p>{JSON.stringify(this.state)}</p> */}
                 <JsonToTable json={this.state.queryData} />
                 <br/> 
                 <SaveQuery sql={this.state.sql} />
