@@ -26,7 +26,7 @@ it('test fix multiple row types to prepare for sql insertion', () => {
 
 it('test adding row to database in table organization', () => {
   // inserting into organization table
-  row = ['"TestOrganization"', 50];
+  row = ["'organizationTest'"];
   table = 'organization';
 
   insert.insert(table, row);
@@ -43,18 +43,18 @@ it('test adding row to database in table organization', () => {
         console.log(err.message);
     }
     console.log("Connected!");
-    con.query('select Name from organization where organization_id=50', function (err, result) {
+    con.query('select Name from organization where Name=\'organizationTest', function (err, result) {
         if (err){
             console.log(err.message);
         }
-        assert.equals('TestOrganization', result[0]);
+        assert.equals('organizationTest', result[0]);
     }); con.end();
   });
 });
 
 it('add a row to table (accounts) with foreign key', () => {
   var table = 'accounts';
-  var values = ["'bob'", "'email@email.com'", "'pass'", 400, 50, 1];
+  var values = ["'Test'", "'test@email.com'", "'pass'", "'organizationTest'", "0", "'{}'"];
   insert.insert(table, values);
 
   var con = mysql.createConnection({
@@ -69,8 +69,8 @@ it('add a row to table (accounts) with foreign key', () => {
         console.log(err.message);
     }
     console.log("Connected!");
-    con.query('select Name from accounts where id=400', function (err, result) {
-        assert.equals('bob', result[0]);
+    con.query('select Name from accounts where email=\'test@email.com\'', function (err, result) {
+        assert.equals('Test', result[0]);
         assert(!err);
     }); con.end();
   });

@@ -5,6 +5,32 @@ var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OC
 
 const defaultPreset = '{"Number of clients" : "select count(*) from client" , "Number of courses" : "select count(*) from `lt course setup`"}';
 
+function insert (table, row, callback) {
+    var sql = "INSERT INTO " + table + " values (" + row.join(", ") + ");";
+    //console.log(sql);
+    var con = mysql.createConnection({
+        host: "den1.mysql6.gear.host",
+        user: "icare",
+        password: "team9!",
+        database: "icare"
+    });
+
+    con.connect((err) => {
+        if (err) {
+            throw err;
+        }
+        console.log("Connected!");
+        con.query(sql, function (err, result) {
+            if (err) {
+                callback(err);
+            } else {
+                console.log('shit inserted');
+            }
+        });
+        con.end();
+    });
+}
+
 function insertAccount(name, email, pass, organization, permissions, callback) {
 
     var sql = `insert into accounts values ('${name}', '${email}', '${pass}', '${organization}', '${permissions}', '${defaultPreset}')`
@@ -166,6 +192,7 @@ function process_template(filepath) {
 module.exports.changePassword = changePassword;
 module.exports.parse_sheet = parse_sheet;
 module.exports.insertAccount = insertAccount;
+module.exports.insert = insert;
 module.exports.fix_row_types = fix_row_types;  
 module.exports.add_sheet_to_table = add_sheet_to_table;  
 module.exports.process_template = process_template;
