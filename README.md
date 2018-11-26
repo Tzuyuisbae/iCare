@@ -8,3 +8,8 @@ To run the app, go to directory icare and run `npm install` in terminal, then ru
 To run the automated unit test, open the terminal and change directory to server/test. Then to install test dependencies run `npm install`. Then to run the tests, run `npm test`.
 
 Note: the database may be initialized with values and tables that may conflict with the test cases and cause them to fail. 
+
+
+## Demo
+
+https://www.youtube.com/watch?v=BVAQArELohw&feature=youtu.be
