@@ -24,6 +24,17 @@
     text-align: center;
     margin-top: 10px;
 }
+.download:hover{
+    transform: scale(1.1, 1.1)
+}
+.download:active{
+    transform: scale(0.9, 0.9)
+}
+download:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+}
 
 .wrapSearch{
     position: relative;
@@ -48,6 +59,17 @@
     border-style: solid;
     text-align: center;
 }
+.button:hover{
+    transform: scale(1.1, 1.1)
+}
+.button:active{
+    transform: scale(0.9, 0.9)
+}
+button:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+}
 
 .button2{
     width: 80%;
@@ -62,6 +84,17 @@
     text-align: center;
     margin-top: 20px;
 }
+.button2:hover{
+    transform: scale(1.1, 1.1)
+}
+.button2:active{
+    transform: scale(0.9, 0.9)
+}
+button2:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+}
 
 .container{
     display: flex;
@@ -75,6 +108,8 @@
 }
 .query{
     margin-left: 15%;
+    display: flex;
+    flex-direction: column;
 }
 .thanks{
     font-size: 34px;
@@ -107,5 +142,24 @@
     font-family: "Montserrat", sans-serif;
     color: #FFFFFF;
     text-decoration: none;
+}
 
+.option{
+    font-size: 34px;
+    font-family: "Montserrat", sans-serif;
+    color: #1C4196;
+    font-weight: normal;
+    text-align: center;
+    margin-right: 50px;
+}
+.option:hover{
+    cursor: pointer;
+}
+
+.on{
+    font-size: 34px;
+    font-family: "Montserrat", sans-serif;
+    color: #1C4196;
+    font-weight: bold;
+    text-decoration: underline;
 }

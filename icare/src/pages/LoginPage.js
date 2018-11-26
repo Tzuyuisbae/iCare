@@ -24,7 +24,7 @@ export default class LoginPage extends React.Component {
             <div style={{marginTop: '65px'}}/>
             <div className = "row">
               <div className="col left">
-                <img src={iCareLogo} alt="fun" className="iCare"/>
+                <img src={iCareLogo} alt="Logo" className="iCare"/>
                 <span className="info infoText">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et vulputate nulla. Suspendisse ultrices non nulla at accumsan. Aliquam scelerisque efficitur tellus eu porttitor. Ut fermentum porttitor lectus, sed rhoncus ipsum tincidunt eget. Morbi blandit consequat odio sed commodo. In ut erat pharetra, tempor purus vitae, laoreet massa. Integer aliquam a nisi quis vulputate. Morbi condimentum nibh sed nibh fermentum sodales. Donec vestibulum egestas.
                 </span>
@@ -32,11 +32,6 @@ export default class LoginPage extends React.Component {
               <div className="form right">
                     <p className="signupText">Sign In</p>
                     <LoginForm history={this.props.history} />
-                    <div className={'nav-items'}>
-                        <Link to={'/upload'}>
-                            <button>Go to upload</button>
-                        </Link>
-                    </div>
                 </div>
             </div>
           </Page>

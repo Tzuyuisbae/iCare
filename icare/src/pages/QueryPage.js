@@ -18,6 +18,7 @@ export default class QueryPage extends React.Component {
     state = {
         sql: '',
         data: {},
+        active: 0,
     }
 
     updateQueryPage = (e) => {
@@ -38,8 +39,39 @@ export default class QueryPage extends React.Component {
         this.setState({sql : ''});
     }
 
+    queryNeeds = () => {
+        this.setState({
+            active: 0
+        })
+    };
+
+    queryServices = () => {
+        this.setState({
+            active: 1
+        })
+    };
+
+    monthlyServices = () => {
+        this.setState({
+            active: 2
+        })
+    };
+
     render() {
         const cookie = new Cookies();
+        const disp = [(<div>
+                    <h1>Query Needs</h1>
+                    <CustomQueryNeeds />
+                </div>), 
+            (<div>
+                <h1>Query Services</h1>
+                <CustomQueryServices />
+            </div>), 
+            (<div>
+                <h1>Query Monthly Services</h1>
+                <CustomQueryMonthly />
+            </div>)];
+        const display=(disp[this.state.active])
         return (
             <Page className="lilblue">
                 <Navbar permissions={cookie.get('permissions')} />
@@ -63,15 +95,13 @@ export default class QueryPage extends React.Component {
 
                     {/* <p>{JSON.stringify(this.state)}</p> */}
                     <JsonToTable json={this.state.data} />
-                    <br/>
                     <Query />
-                    <br />
-                    <h1>Custom Query Needs</h1>
-                    <CustomQueryNeeds />
-                    <h1>Custom Query Services</h1>
-                    <CustomQueryServices />
-                    <h1>Custom Query Monthly</h1>
-                    <CustomQueryMonthly />
+                    <div>
+                        <span onClick={() => this.queryNeeds()} className={`${(this.state.active === 0) ? 'on' : ''} option`}>Query Needs</span>
+                        <span onClick={() => this.queryServices()} className={`${(this.state.active === 1) ? 'on' : ''} option`}>Query Services</span>
+                        <span onClick={() => this.monthlyServices()} className={`${(this.state.active === 2) ? 'on' : ''} option`}>Query Monthly Services</span>
+                    </div>
+                    {display}
                 </div>
             </Page>
         )
